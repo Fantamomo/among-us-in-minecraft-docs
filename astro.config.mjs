@@ -2,12 +2,12 @@
 import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-// https://astro.build/config
 export default defineConfig({
+    site: 'https://among-us-in-minecraft.docs.fantamomo.com',
     integrations: [
         starlight({
             title: 'Among Us in Minecraft Docs',
-            social: [{icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight'}],
+            social: [{icon: 'github', label: 'GitHub', href: 'https://github.com/fantamomo/among-us-in-minecraft'}],
             sidebar: [
                 {
                     label: 'Guides',
