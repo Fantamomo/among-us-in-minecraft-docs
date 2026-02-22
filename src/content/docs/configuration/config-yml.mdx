@@ -1,0 +1,238 @@
+---
+title: config.yml
+---
+
+This plugin provides a `config.yml` file located in:
+
+```
+/plugins/AmongUs/config.yml
+```
+
+Below is the default configuration:
+
+```yaml
+# The msg-command-blocker module prevents players from sending private messages
+# (/msg, /tell, /w, etc.) while they are in a game. This helps maintain fair play
+# and prevents players from sharing information that could affect the outcome.
+msg-command-blocker:
+  # Master switch to enable or disable blocking of private message commands (/msg, /tell, /w, etc.).
+  disabled: false
+
+  # Legacy mode for command blocking:
+  # - false: Attempts to automatically intercept private message commands, even when executed via /execute.
+  # - true: Uses the explicit "commands" list below to determine which commands to block.
+  #   Recommended if other plugins override /msg or if console errors suggest enabling legacy mode.
+  legacy: false
+
+  # List of commands to block when legacy mode is enabled.
+  # These commands will be prevented while a player is in a game.
+  commands:
+    - msg
+    - tell
+    - w
+    - minecraft:tell
+    - minecraft:msg
+    - minecraft:w
+
+# MorphBlender / Skin Animation Configuration
+# This section allows you to enable or disable the MorphBlender
+# and choose which animation to use for morphing skins.
+# A valid Mineskin API key is required for this feature.
+# See secrets.properties for more information.
+morph-blender:
+  # Master switch to enable/disable MorphBlender
+  # If this is off, a player changing form will simply acquire the chosen skin.
+  enabled: false
+
+  # Blender to use
+  # Available blenders:
+  # - virus: Virus blending
+  # - fade: Fade blending
+  # - checker: Checkerboard blending
+  # default: virus
+  blender: virus
+
+  # Sets the visibility of the skins on https://mineskin.org/skins
+  # Available visibilities:
+  # - public: Anyone can see the skin (not recommended)
+  # - unlisted: It won't be shown in the skin list, but everyone with the link can access it
+  # - private: Only you can see and access the skin
+  # - auto: if your MineSkin Plan allows private skins, it will be private, otherwise it will be unlisted
+  # default: auto
+  visibility: auto
+
+# Should we animate the scoreboard?
+animate-scoreboard: true
+```
+
+---
+
+## msg-command-blocker
+
+:::info
+The <strong>Msg-Command-Blocker</strong> module prevents players from sending private messages while they are participating in a game.
+:::
+
+Private messaging can break the intended gameplay experience by allowing players to share hidden information.
+This module ensures fair play by intercepting private message commands before they are executed.
+
+---
+
+### How It Works
+
+The plugin intercepts private message commands (such as `/msg`, `/tell`, `/w`, etc.) and checks their context.
+
+The command will be **blocked** if any of the following conditions are met:
+
+- The **sender** is currently in a game
+- At least one **target player** is currently in a game
+
+The command will be **allowed** if:
+
+- The sender and the target are the same player
+- Neither player is in a game
+- The module is disabled in the configuration
+
+---
+
+### Configuration Options
+
+#### disabled
+Completely enables or disables the module.
+
+```yaml
+disabled: false
+```
+
+- `false` → Blocking is active
+- `true` → No commands will be blocked
+
+---
+
+#### legacy
+Enables legacy command blocking mode.
+
+```yaml
+legacy: false
+```
+
+- `false` → The plugin attempts to automatically detect and intercept private message commands (recommended).
+- `true` → Only commands listed under `commands:` will be blocked.
+
+:::caution
+Enable legacy mode if:
+- Another plugin overrides `/msg`
+- You experience console warnings related to command interception
+:::
+
+---
+
+#### commands
+Only used when `legacy: true`.
+
+Defines exactly which commands should be blocked while players are in a game.
+
+```yaml
+commands:
+  - msg
+  - tell
+  - w
+```
+
+You may add additional aliases if required by your server setup.
+
+---
+
+## MorphBlender
+
+:::info
+MorphBlender enables animated skin transitions when a player changes form.
+:::
+
+This feature requires a valid **MineSkin API key** configured in `secrets.properties`.
+
+If disabled, players will instantly switch to the new skin without animation.
+
+---
+
+### Configuration Options
+
+#### enabled
+
+```yaml
+enabled: false
+```
+
+- `true` → Animated morph transitions are enabled
+- `false` → Instant skin switch
+
+---
+
+#### blender
+
+Defines the animation style used for morphing.
+
+```yaml
+blender: virus
+```
+
+Available options:
+
+- `virus` – Viral spreading animation
+- `fade` – Smooth fade transition
+- `checker` – Checkerboard-style blending
+
+---
+
+#### visibility
+
+Controls how generated skins are stored on MineSkin.
+
+```yaml
+visibility: auto
+```
+
+Available options:
+
+- `public` – Visible to everyone (not recommended)
+- `unlisted` – Accessible via link only
+- `private` – Only visible to your MineSkin account
+- `auto` – Automatically selects the best option based on your plan
+
+---
+
+## animate-scoreboard
+
+```yaml
+animate-scoreboard: true
+```
+
+Enables or disables animated scoreboard updates.
+
+- `true` → Scoreboard updates dynamically with animation
+- `false` → Static scoreboard
+
+:::tip
+Disabling animations may slightly improve performance on very large servers.
+:::
+
+---
+
+## Recommended Setup
+
+For most servers:
+
+```yaml
+msg-command-blocker:
+  disabled: false
+  legacy: false
+
+morph-blender:
+  enabled: true
+  blender: virus
+  visibility: auto
+
+animate-scoreboard: true
+```
+
+This provides the best balance between gameplay integrity, visual polish, and performance.

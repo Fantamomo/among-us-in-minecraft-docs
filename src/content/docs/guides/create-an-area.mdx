@@ -1,0 +1,200 @@
+---
+title: Create a Game Area
+---
+
+A **Game Area** defines a complete playable map for the Among Us plugin.
+It contains all required boundaries, spawn points, interaction blocks, and optional gameplay elements.
+
+This guide explains how to create and configure an area step by step.
+
+---
+
+## Create a New Area
+
+Use the following command:
+
+```
+/aua area <name> create
+```
+
+- `<name>` – The unique name of your area.
+
+If successful, the area will be registered and ready for configuration.
+
+---
+
+## Set Area Locations
+
+For the plugin to work correctly, you must define several required locations.
+
+### Command
+
+```
+/aua area <name> set <location> <pos> [rotation]
+```
+
+### Parameters
+
+- `<location>` – The property you want to configure (see list below)
+- `<pos>` – The position (x y z)
+- `[rotation]` – Optional yaw and pitch (only required for specific locations)
+
+You can also use:
+
+```
+@S
+```
+
+Instead of `<pos>` and `[rotation]`, `@s` will automatically use your current position and rotation.
+
+Example:
+
+```
+/aua area Skeld set lobbySpawn @s
+```
+
+---
+
+## Required Locations
+
+The following locations **must be set** for the area to be valid:
+
+| Location             | Description                                        |
+|----------------------|----------------------------------------------------|
+| `minCorner`          | Minimum boundary corner of the playable area       |
+| `maxCorner`          | Maximum boundary corner of the playable area       |
+| `lobbySpawn`         | Where players spawn when joining a game            |
+| `gameSpawn`          | Where players spawn when the game starts           |
+| `meetingBlock`       | The block players click to call a meeting          |
+| `ejectedFallPoint`   | Where voted players are teleported (e.g. lava pit) |
+| `ejectedViewPoint`   | Where others watch the ejection                    |
+| `cameraJoinPointMin` | Minimum corner of the camera interaction area      |
+| `cameraJoinPointMax` | Maximum corner of the camera interaction area      |
+
+An area will **not start** unless all required locations are configured.
+
+---
+
+## Optional Locations
+
+These locations enable additional gameplay features:
+
+### Wardrobe
+
+| Location   | Description                                    |
+|------------|------------------------------------------------|
+| `wardrobe` | Spawns a mannequin that opens the wardrobe GUI |
+
+---
+
+### Meeting Room Restriction
+
+Used to prevent players from leaving during an active meeting.
+
+| Location         | Description                    |
+|------------------|--------------------------------|
+| `meetingRoomMin` | Minimum corner of meeting room |
+| `meetingRoomMax` | Maximum corner of meeting room |
+
+---
+
+### Lights Sabotage
+
+| Location      | Description                             |
+|---------------|-----------------------------------------|
+| `lightPosMin` | Minimum corner of lever visibility area |
+| `lightPosMax` | Maximum corner of lever visibility area |
+
+Additional lever blocks must be added using:
+
+```
+/aua area <name> add lights_levers <block>
+```
+
+---
+
+### Seismic Stabilizers Sabotage
+
+| Location                      | Description                     |
+|-------------------------------|---------------------------------|
+| `seismicStabilizers1`         | First stabilizer button         |
+| `seismicStabilizers2`         | Second stabilizer button        |
+| `seismicStabilizers1Particle` | Beam indicator for stabilizer 1 |
+| `seismicStabilizers2Particle` | Beam indicator for stabilizer 2 |
+
+---
+
+### Communications Sabotage
+
+| Location                    | Description                  |
+|-----------------------------|------------------------------|
+| `communications`            | Block to fix communications  |
+| `outgoingCommunicationBeam` | Beam following player cursor |
+
+---
+
+## Adding Additional Gameplay Elements
+
+Some features are added via the `add` command.
+
+### Add Vents
+
+```
+/aua area <name> add vents <id> <block>
+```
+
+- `<id>` – Vent group ID
+- `<block>` – Block position
+
+Vents with the same ID are connected.
+
+---
+
+### Add Cameras
+
+```
+/aua area <name> add cams <name> @s
+```
+
+Adds a named camera at your current eye location.
+
+---
+
+### Add Light Levers
+
+```
+/aua area <name> add lights_levers <block>
+```
+
+Adds a lever used during the lights sabotage.
+
+---
+
+### Add Tasks
+
+```
+/aua area <name> add tasks <taskName> <block>
+```
+
+- `<taskName>` – Internal task identifier
+- `<block>` – Block position where the block which open the task GUI is located
+
+---
+
+## Validate Your Area
+
+An area is considered **valid** when all required locations are set.
+
+If something is missing, the system will report which properties still need configuration.
+
+---
+
+:::tip
+
+- Use `@s` to avoid manual coordinate input.
+- Make sure block-based locations (like `meetingBlock`) are set precisely on the correct block.
+- For ejections, use a dramatic fall (e.g., into lava).
+
+:::
+
+Your area is now ready to host a game!

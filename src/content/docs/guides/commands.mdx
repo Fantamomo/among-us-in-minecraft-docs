@@ -1,0 +1,210 @@
+---
+title: Commands
+---
+
+This plugin registers three commands:
+
+1. `/amongusadmin`
+2. `/amongus`
+3. `/impostermsg`
+
+---
+
+## Among Us Admin
+
+Alias: `/aua`
+
+:::info
+    Main administration command for managing games and settings.
+:::
+
+---
+
+### game
+
+```
+/aua game
+```
+
+Provides full control over game instances.
+
+Available subcommands:
+
+---
+
+#### Create a Game
+
+```
+/aua game create <area> [<world>] [max_players]
+```
+
+Creates a new game using a configured area.
+
+- `<area>` – Name of the configured game area
+- `[<world>]` – Optional world override
+- `[max_players]` - Optional maximum player count, muss not be higher then 16
+
+---
+
+#### List Games
+
+```
+/aua game list
+```
+
+Displays all currently running games.
+
+---
+
+#### Start Game
+
+```
+/aua game start
+```
+
+Starts the current game instance.
+
+---
+
+#### Manage Tasks
+
+```
+/aua game task <players> (assign|unassign|complete) <task>
+```
+
+Manually control task states for selected players.
+
+- `assign` – Assign tasks
+- `unassign` – Remove assigned tasks
+- `complete` – Mark tasks as completed
+- `<task>` - the task id
+
+---
+
+#### Force Win
+
+```
+/aua game letwin (crewmates|imposters|neutral) [neutral_role]
+```
+
+Immediately ends the game with the specified team as winner.
+
+If `neutral` is specified, you need to specify the neutral role which will win.
+
+---
+
+#### Kill Player
+
+```
+/aua game kill <target> [<corpse>]
+```
+
+Forces a player to die.
+
+- `<target>` – Player to kill
+- `[<corpse>]` – If a corpse should be spawned
+
+---
+
+#### Role Management
+
+```
+/aua game role (force|block|unblock|allow|team) <role>|<team>
+```
+
+Manually control role behavior.
+
+Available actions:
+
+- `force` – Force a specific role
+- `block` – Prevent a role from being assigned
+- `unblock` – Remove role restriction
+- `allow` – Explicitly allow a role
+- `team` – Modify team assignment
+
+---
+
+#### Player Info
+
+```
+/aua game info <target>
+```
+
+Displays detailed information about a specific player in the game.
+
+---
+
+### settings
+
+```
+/aua settings
+```
+
+Opens the settings inventory of the currently running game.
+
+Allows administrators to:
+
+- View all configurable game settings
+- Modify values
+- Reset settings to default
+
+::note
+The sender must:
+- Be a player
+- Be inside a game
+:::
+
+---
+
+#### Direct Settings Access
+
+```
+/aua settings <key> get
+/aua settings <key> set <value>
+/aua settings <key> reset
+```
+
+- `get` – Shows current and default value
+- `set` – Changes the setting
+- `reset` – Restores default value
+
+---
+
+## Among Us
+
+```
+/amongus
+```
+
+:::note
+Main player command.
+:::
+
+Used by players to interact with the plugin.
+
+Currently there are three subcommands:
+
+- `color`: sets the player's color
+- `trimp`: sets the player's armor trim
+- `stats`: some statistics about the player
+
+`color` and `trimp` are only available in the lobby phase of the game.
+
+`stats` is blocked if the player is player, due that some statistics may expose hidden information, about the current game.
+Like if the player has voted correctly or not, which means that he voted an imposter.
+
+---
+
+## Imposter Message
+
+```
+/impostermsg <message>
+```
+
+:::note
+Private communication channel for imposters.
+:::
+
+Sends a private message to all alive imposters in the same game.
+
+Only usable while in a game and assigned to the imposter team.

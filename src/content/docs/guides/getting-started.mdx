@@ -1,0 +1,37 @@
+---
+title: Getting Started
+description: A guide to how to get started with the Plugin.
+---
+
+import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+
+<Steps>
+
+    1. Get the plugin.
+
+        <Tabs>
+            <TabItem label="Build from Source">
+                ```bash
+                git clone https://github.com/Fantamomo/among-us-in-minecraft
+                cd among-us-in-minecraft
+                ./gradlew shadowJar
+                ```
+                The plugin will be in `build/libs/`.
+            </TabItem>
+            <TabItem label="Download">
+
+                :::caution
+                Current there is no other way then building from source.
+                We hope to change that soon.
+                :::
+
+            </TabItem>
+        </Tabs>
+
+    2. Place it in your `/plugins` directory.
+
+    3. Start your server.
+
+    4. You are good to go.
+
+</Steps>
