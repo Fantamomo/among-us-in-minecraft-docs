@@ -78,6 +78,12 @@ export default defineConfig({
                     label: 'Tasks',
                     items: [
                         {label: 'Chart Course', slug: 'tasks/chart-course'},
+                        {label: 'Clear Asteroids', slug: 'tasks/clear-asteroids'},
+                        {label: 'Fill Canister', slug: 'tasks/fill-canister'},
+                        {label: 'Fix Weather Node', slug: 'tasks/fix-weather-node'},
+                        {label: 'Fix Wire', slug: 'tasks/fix-wire'},
+                        {label: 'Fuel Engines', slug: 'tasks/fuel-engines'},
+                        {label: 'Garbage', slug: 'tasks/garbage'},
                     ]
                 }
             ],
