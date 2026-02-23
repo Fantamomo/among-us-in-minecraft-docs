@@ -30,6 +30,7 @@ export default defineConfig({
                         {label: 'Role List', slug: 'roles/roles'},
                         {
                             label: 'Crewmates',
+                            collapsed: true,
                             items: [
                                 {label: 'Caller', slug: 'roles/crewmates/caller'},
                                 {label: 'Camera Man', slug: 'roles/crewmates/camera-man'},
@@ -38,6 +39,29 @@ export default defineConfig({
                                 {label: 'Engineer', slug: 'roles/crewmates/engineer'},
                                 {label: 'Mayor', slug: 'roles/crewmates/mayor'},
                                 {label: 'Seer', slug: 'roles/crewmates/seer'},
+                                {label: 'Sheriff', slug: 'roles/crewmates/sheriff'},
+                                {label: 'Snitch', slug: 'roles/crewmates/snitch'},
+                                {label: 'The Damned', slug: 'roles/crewmates/the-damned'}
+                            ]
+                        },
+                        {
+                            label: 'Imposters',
+                            collapsed: true,
+                            items: [
+                                {label: 'Camouflager', slug: 'roles/imposters/camouflager'},
+                                {label: 'Imposter', slug: 'roles/imposters/imposter'},
+                                {label: 'Miner', slug: 'roles/imposters/miner'},
+                                {label: 'Morphling', slug: 'roles/imposters/morphling'},
+                                {label: 'Phantom', slug: 'roles/imposters/phantom'},
+                            ]
+                        },
+                        {
+                            label: 'Neutral',
+                            collapsed: true,
+                            items: [
+                                {label: 'Arsonist', slug: 'roles/neutral/arsonist'},
+                                {label: 'Cannibal', slug: 'roles/neutral/cannibal'},
+                                {label: 'Jester', slug: 'roles/neutral/jester'},
                             ]
                         }
                     ]
