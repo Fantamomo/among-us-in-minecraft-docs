@@ -1,0 +1,19 @@
+---
+title: Morphling
+---
+
+import {Badge} from '@astrojs/starlight/components';
+
+<Badge text="Imposter" variant="danger"/>
+
+The Morphling can transform into another player at any time.
+
+Activating this ability opens a menu where the Morphling can choose any player to copy, including other Imposters. Upon morphing, the Morphling adopts the target player’s name, skin, and helmet.
+
+If the [MineSkin API](../../../secrets-properties#mineskin-api-key) is configured, the skin change will animate rather than instantly swapping. Note that the animation may not appear the first time a player is morphed, as it may not be cached yet.
+
+Detectives will see footprints in the color of the player the Morphling has transformed into.
+
+:::note
+If the Morphling reports a body while morphed, the report will appear under the Morphling’s own identity, **not** the player they have copied.
+:::

@@ -2,8 +2,17 @@
 title: Detective
 ---
 
-import { Badge } from '@astrojs/starlight/components';
+import {Badge} from '@astrojs/starlight/components';
 
-<Badge text="Crewmate" variant="note" />
+<Badge text="Crewmate" variant="note"/>
 
-The detective sees the footprints of other players.
+The Detective can see the footprints of other players.
+
+Footprints appear as particles in the player’s color, allowing the Detective to track their movements.
+
+If a player morphs into someone else, their footprints change to match the color of the player they are disguised as.
+
+When a player enters a vent, no new footprints are created while they are inside.
+However, footprints leading up to the vent remain visible. New footprints will only appear again once the player exits the vent.
+
+If the Camouflager activates their ability and disguises all players, any new footprints will appear in the camouflage color instead of the players’ original colors.

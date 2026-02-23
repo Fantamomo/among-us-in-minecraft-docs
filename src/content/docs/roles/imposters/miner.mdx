@@ -1,0 +1,20 @@
+---
+title: Miner
+---
+
+import {Badge} from '@astrojs/starlight/components';
+
+<Badge text="Imposter" variant="danger"/>
+
+The Miner is an Imposter with an additional ability: creating vents.
+
+To create a vent, the Miner right-clicks the shovel in their hotbar.
+The vent will appear at the Miner’s location shortly after the action.
+The Miner must remain still during vent creation, otherwise the attempt will fail.
+
+Other players can see the vent being created, as cracks appear in the blocks around the Miner, simulating mining activity.
+
+Once created, the vent is visible to all players, and anyone who can use vents can immediately use it.
+
+Each vent the Miner creates is part of their personal vent network, separate from other Miners.
+All vents created by the same Miner are interconnected.
