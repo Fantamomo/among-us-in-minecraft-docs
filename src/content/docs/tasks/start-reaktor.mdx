@@ -1,0 +1,19 @@
+---
+title: Start Reactor
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+Type: <Badge text="Long" variant="note" />
+
+In this task, the player must start the reactor by following a sequence of lights.
+
+**How it works:**
+1. A **sequence of yellow lights** will briefly appear on the left grid.
+2. Memorize the sequence and repeat it on the **right grid** by clicking the corresponding slots.
+3. If the player clicks the wrong slot, the task will flash red and reset with a new sequence.
+4. After correctly repeating the sequence, the next step increases the length of the sequence until the task is complete.
+
+:::caution
+Closing the inventory will cause an error and reset the task.
+:::

@@ -88,6 +88,13 @@ export default defineConfig({
                         {label: 'Inspect Sample', slug: 'tasks/inspect-sample'},
                         {label: 'Numbers', slug: 'tasks/numbers'},
                         {label: 'Open Waterways', slug: 'tasks/open-waterways'},
+                        {label: 'Record Temperature', slug: 'tasks/record-temperature'},
+                        {label: 'Repair Drill', slug: 'tasks/repair-drill'},
+                        {label: 'Scan Boarding Pass', slug: 'tasks/scan-boarding-pass'},
+                        {label: 'Start Reaktor', slug: 'tasks/start-reaktor'},
+                        {label: 'Store Artifacts', slug: 'tasks/store-artifacts'},
+                        {label: 'Transfer Data', slug: 'tasks/transfer-data'},
+                        {label: 'Verify ID', slug: 'tasks/verify-id'}
                     ]
                 }
             ],
