@@ -8,6 +8,14 @@ export default defineConfig({
         starlight({
             title: 'Among Us in Minecraft Docs',
             social: [{icon: 'github', label: 'GitHub', href: 'https://github.com/fantamomo/among-us-in-minecraft'}],
+            editLink: {
+                baseUrl: 'https://github.com/fantamomo/among-us-in-minecraft-docs/edit/main/',
+            },
+            lastUpdated: true,
+            components: {
+                Footer: "./src/components/overrides/Footer.astro",
+                LastUpdated: "./src/components/overrides/LastUpdated.astro"
+            },
             sidebar: [
                 {
                     label: 'Guides',
