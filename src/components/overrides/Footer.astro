@@ -1,0 +1,38 @@
+---
+import Default from "@astrojs/starlight/components/Footer.astro";
+import { Icon } from "@astrojs/starlight/components";
+---
+
+<Default><slot /></Default>
+<div>
+    <p class="footer-item">
+        Copyright © {new Date().getFullYear()} Fantamomo. Built with <Icon name="starlight" class="icon" />
+        <a href="https://starlight.astro.build/" target="_blank">Starlight</a>.
+    </p>
+    <p class="footer-item muted">
+        This website is not an official Among Us website and is not affiliated with Innersloth LLC.
+        All product and company names are trademarks or registered trademarks of their respective owners.
+        The use of these names does not imply any endorsement, sponsorship, or affiliation.
+    </p>
+</div>
+
+<style>
+    .footer-item {
+        text-align: center;
+        font-size: var(--sl-text-2xs);
+        color: var(--sl-color-gray-2);
+        margin-bottom: 0.25rem;
+    }
+
+    .footer-item a:not(:hover) {
+        text-decoration: none;
+    }
+
+    .icon {
+        color: var(--sl-color-orange);
+    }
+
+    .muted {
+        color: var(--sl-color-gray-3);
+    }
+</style>
