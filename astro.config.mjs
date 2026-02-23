@@ -84,6 +84,10 @@ export default defineConfig({
                         {label: 'Fix Wire', slug: 'tasks/fix-wire'},
                         {label: 'Fuel Engines', slug: 'tasks/fuel-engines'},
                         {label: 'Garbage', slug: 'tasks/garbage'},
+                        {label: 'Insert Key', slug: 'tasks/insert-key'},
+                        {label: 'Inspect Sample', slug: 'tasks/inspect-sample'},
+                        {label: 'Numbers', slug: 'tasks/numbers'},
+                        {label: 'Open Waterways', slug: 'tasks/open-waterways'},
                     ]
                 }
             ],
