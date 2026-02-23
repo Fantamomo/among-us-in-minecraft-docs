@@ -73,6 +73,12 @@ export default defineConfig({
                             ]
                         }
                     ]
+                },
+                {
+                    label: 'Tasks',
+                    items: [
+                        {label: 'Chart Course', slug: 'tasks/chart-course'},
+                    ]
                 }
             ],
         }),
