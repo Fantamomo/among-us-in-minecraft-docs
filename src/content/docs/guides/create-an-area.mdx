@@ -172,12 +172,24 @@ Adds a lever used during the lights sabotage.
 
 ### Add Tasks
 
-```
-/aua area <name> add tasks <taskName> <block>
+Use the following command to add tasks to an area:
+
 ```
 
-- `<taskName>` – Internal task identifier
-- `<block>` – Block position where the block which open the task GUI is located
+/aua area <name> add tasks <task_id> <block>
+
+```
+
+- `<task_id>` – Internal task ID
+- `<block>` – Position of the block that opens the task GUI
+
+:::note
+You can find the `task_id` in the task documentation. It is listed at the top of the page under "Id".
+:::
+
+:::caution
+Some tasks have multiple positions. In that case, there is an additional column with the ID you should use.
+:::
 
 ---
 
