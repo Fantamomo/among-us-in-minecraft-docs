@@ -2,13 +2,13 @@
 title: config.yml
 ---
 
-This plugin provides a `config.yml` file located in:
+This plugin provides a `config.yml` file located at:
 
 ```
 /plugins/AmongUs/config.yml
 ```
 
-Below is the default configuration:
+Below is the **default configuration**:
 
 ```yaml
 # The msg-command-blocker module prevents players from sending private messages
@@ -61,76 +61,73 @@ morph-blender:
   # default: auto
   visibility: auto
 
+# Roles and Modifications
+roles:
+  disabled:
+  #  - phantom
+
+modifications:
+  disabled:
+  #  - small
+
 # Should we animate the scoreboard?
 animate-scoreboard: true
 ```
 
 ---
 
-## msg-command-blocker
+## Msg-Command-Blocker
 
-:::info
-The <strong>Msg-Command-Blocker</strong> module prevents players from sending private messages while they are participating in a game.
-:::
-
-Private messaging can break the intended gameplay experience by allowing players to share hidden information.
-This module ensures fair play by intercepting private message commands before they are executed.
-
----
+Private messaging can break gameplay by allowing hidden information to be shared. This module ensures fair play by intercepting commands before they execute.
 
 ### How It Works
 
-The plugin intercepts private message commands (such as `/msg`, `/tell`, `/w`, etc.) and checks their context.
+Private message commands (e.g., `/msg`, `/tell`, `/w`) are **blocked** if:
 
-The command will be **blocked** if any of the following conditions are met:
+* The **sender** is in a game
+* At least one **target player** is in a game
 
-- The **sender** is currently in a game
-- At least one **target player** is currently in a game
+Commands are **allowed** if:
 
-The command will be **allowed** if:
-
-- The sender and the target are the same player
-- Neither player is in a game
-- The module is disabled in the configuration
-
----
+* The sender and the target are the same player
+* Neither player is in a game
+* The module is disabled
 
 ### Configuration Options
 
 #### disabled
-Completely enables or disables the module.
 
 ```yaml
 disabled: false
 ```
 
-- `false` → Blocking is active
-- `true` → No commands will be blocked
-
----
+* `false` → Blocking is active
+* `true` → No commands are blocked
 
 #### legacy
-Enables legacy command blocking mode.
 
 ```yaml
 legacy: false
 ```
 
-- `false` → The plugin attempts to automatically detect and intercept private message commands (recommended).
-- `true` → Only commands listed under `commands:` will be blocked.
+* `false` → Automatically intercepts private message commands (recommended)
+* `true` → Only commands listed under `commands:` are blocked
+
+:::danger
+Legacy mode can only check the sender, not the target.
+
+That means that a player outside a game can still send a private message to players in a game.
+:::
 
 :::caution
 Enable legacy mode if:
-- Another plugin overrides `/msg`
+- Another plugin overrides `/msg` or registers custom commands that allow sending private messages
 - You experience console warnings related to command interception
 :::
 
----
-
 #### commands
-Only used when `legacy: true`.
 
-Defines exactly which commands should be blocked while players are in a game.
+Only used when `legacy: true`. Defines exactly which commands to block:
 
 ```yaml
 commands:
@@ -139,7 +136,7 @@ commands:
   - w
 ```
 
-You may add additional aliases if required by your server setup.
+Add more aliases if your server uses them.
 
 ---
 
@@ -153,8 +150,6 @@ This feature requires a valid **MineSkin API key** configured in `secrets.proper
 
 If disabled, players will instantly switch to the new skin without animation.
 
----
-
 ### Configuration Options
 
 #### enabled
@@ -166,11 +161,7 @@ enabled: false
 - `true` → Animated morph transitions are enabled
 - `false` → Instant skin switch
 
----
-
 #### blender
-
-Defines the animation style used for morphing.
 
 ```yaml
 blender: virus
@@ -178,15 +169,11 @@ blender: virus
 
 Available options:
 
-- `virus` – Viral spreading animation
-- `fade` – Smooth fade transition
-- `checker` – Checkerboard-style blending
-
----
+* `virus` – Viral spreading animation
+* `fade` – Smooth fade transition
+* `checker` – Checkerboard-style blending
 
 #### visibility
-
-Controls how generated skins are stored on MineSkin.
 
 ```yaml
 visibility: auto
@@ -194,10 +181,44 @@ visibility: auto
 
 Available options:
 
-- `public` – Visible to everyone (not recommended)
-- `unlisted` – Accessible via link only
-- `private` – Only visible to your MineSkin account
-- `auto` – Automatically selects the best option based on your plan
+* `public` – Visible to everyone (not recommended)
+* `unlisted` – Accessible via link only
+* `private` – Only visible to your MineSkin account
+* `auto` – Best option based on your plan (recommended)
+
+---
+
+## Roles
+
+Any role listed here will be **unavailable** during gameplay.
+
+### Configuration
+
+```yaml
+roles:
+  disabled:
+    - phantom
+```
+
+* `disabled:` → Lists roles to be disabled
+* Disabled roles are **hidden** and not selectable
+
+---
+
+## Modifications
+
+Any modification listed here will be **unavailable** during gameplay.
+
+### Configuration
+
+```yaml
+modifications:
+  disabled:
+    - small
+```
+
+* `disabled:` → Lists modifications to be disabled
+* Disabled modifications are **hidden** and not selectable
 
 ---
 
@@ -207,14 +228,8 @@ Available options:
 animate-scoreboard: true
 ```
 
-Enables or disables animated scoreboard updates.
-
-- `true` → Scoreboard updates dynamically with animation
-- `false` → Static scoreboard
-
-:::tip
-Disabling animations may slightly improve performance on very large servers.
-:::
+* `true` → Scoreboard updates dynamically with animation
+* `false` → Static scoreboard
 
 ---
 
@@ -232,7 +247,11 @@ morph-blender:
   blender: virus
   visibility: auto
 
+roles:
+  disabled: []
+
+modifications:
+  disabled: []
+
 animate-scoreboard: true
 ```
-
-This provides the best balance between gameplay integrity, visual polish, and performance.
