@@ -76,6 +76,7 @@ export default defineConfig({
                 },
                 {
                     label: 'Tasks',
+                    collapsed: true,
                     items: [
                         {label: 'Chart Course', slug: 'tasks/chart-course'},
                         {label: 'Clear Asteroids', slug: 'tasks/clear-asteroids'},
