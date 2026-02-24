@@ -12,10 +12,11 @@ This plugin registers three commands:
 
 ## Among Us Admin
 
-Alias: `/aua`
+Alias: `/aua`  
+Permission: `amongus.admin`
 
 :::info
-    Main administration command for managing games and settings.
+Main administration command for managing games and settings.
 :::
 
 ---
@@ -34,19 +35,36 @@ Available subcommands:
 
 #### Create a Game
 
+Permission: `amongus.admin.game.create`
+
 ```
-/aua game create <area> [<world>] [max_players]
+/aua game create <area> [<world>] [<max_players>]
 ```
 
 Creates a new game using a configured area.
 
 - `<area>` – Name of the configured game area
 - `[<world>]` – Optional world override
-- `[max_players]` - Optional maximum player count, muss not be higher then 16
+- `[<max_players>]` – Optional maximum player count, muss not be higher then 16
 
 ---
 
+#### Join a game
+
+Permission: `amongus.admin.game.join`
+
+```
+/aua game join <code> [<targets>]
+```
+
+Joins the game with the `code`.
+
+- `<code>` – The code of the game
+- `[<targets>]` – The players that should join that game.
+
 #### List Games
+
+Permission: `amongus.admin.game.list`
 
 ```
 /aua game list
@@ -58,6 +76,8 @@ Displays all currently running games.
 
 #### Start Game
 
+Permission: `amongus.admin.game.start`
+
 ```
 /aua game start
 ```
@@ -67,6 +87,8 @@ Starts the current game instance.
 ---
 
 #### Manage Tasks
+
+Permission: `amongus.admin.game.task`
 
 ```
 /aua game task <players> (assign|unassign|complete) <task>
@@ -83,6 +105,8 @@ Manually control task states for selected players.
 
 #### Force Win
 
+Permission: `amongus.admin.game.let_win`
+
 ```
 /aua game letwin (crewmates|imposters|neutral) [neutral_role]
 ```
@@ -94,6 +118,8 @@ If `neutral` is specified, you need to specify the neutral role which will win.
 ---
 
 #### Kill Player
+
+Permission: `amongus.admin.game.kill`
 
 ```
 /aua game kill <target> [<corpse>]
@@ -107,6 +133,8 @@ Forces a player to die.
 ---
 
 #### Role Management
+
+Permission: `amongus.admin.game.role`
 
 ```
 /aua game role (force|block|unblock|allow|team) <role>|<team>
@@ -126,6 +154,8 @@ Available actions:
 
 #### Player Info
 
+Permission: `amongus.admin.game.info`
+
 ```
 /aua game info <target>
 ```
@@ -135,6 +165,8 @@ Displays detailed information about a specific player in the game.
 ---
 
 ### settings
+
+Permission: `amongus.admin.settings`
 
 ```
 /aua settings
@@ -176,6 +208,8 @@ The sender must:
 /amongus
 ```
 
+Alias: `/au`
+
 :::note
 Main player command.
 :::
@@ -187,8 +221,10 @@ Currently there are three subcommands:
 - `color`: sets the player's color
 - `trimp`: sets the player's armor trim
 - `stats`: some statistics about the player
+- `join`: joins a game with a game code
+- `leave`: leaves the current game
 
-`color` and `trimp` are only available in the lobby phase of the game.
+`color`, `trimp` and `leave` are only available in the lobby phase of the game.
 
 `stats` is blocked if the player is player, due that some statistics may expose hidden information, about the current game.
 Like if the player has voted correctly or not, which means that he voted an imposter.
@@ -208,3 +244,15 @@ Private communication channel for imposters.
 Sends a private message to all alive imposters in the same game.
 
 Only usable while in a game and assigned to the imposter team.
+
+---
+
+## Selecting Players
+
+If a player disconnects, they remain part of the current game instance. This means:
+
+* They are still shown in the tab list.
+* They can still be targeted by commands.
+* Player selectors will continue to include them.
+
+This ensures that administrative and game-related commands work consistently, regardless of whether a player is currently online or temporarily disconnected.
