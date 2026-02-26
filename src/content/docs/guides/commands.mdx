@@ -215,7 +215,7 @@ Main player command.
 
 Used by players to interact with the plugin.
 
-Currently there are three subcommands:
+Currently, there are some subcommands:
 
 - `color`: sets the player's color
 - `trimp`: sets the player's armor trim
@@ -227,6 +227,16 @@ Currently there are three subcommands:
 
 `stats` is blocked if the player is player, due that some statistics may expose hidden information, about the current game.
 Like if the player has voted correctly or not, which means that he voted an imposter.
+
+If the config option `game-creation.everyone-can-create` is enabled,
+there are also some other subcommands:
+
+- `create`: creates a new game
+- `settings`: opens the settings inventory (only for the host of the game)
+- `start`: starts the game (only for the host of the game)
+- `ban`: bans a player from the game (only for the host of the game)
+
+The host is the player who created the game (only with `/au create`)
 
 ---
 
