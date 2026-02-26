@@ -1,28 +1,29 @@
 ---
 title: Role List
+description: A list of all roles in the game.
 ---
 
-import {Badge} from '@astrojs/starlight/components';
+import { Badge } from '@astrojs/starlight/components';
 
 This plugin features a variety of roles, each with unique abilities and objectives.
 
-| Role                                    | Team                                      | Description                                                         |
-|-----------------------------------------|-------------------------------------------|---------------------------------------------------------------------|
-| [Caller](../crewmates/caller)           | <Badge text="Crewmate" variant="note"/>   | Can call meetings from anywhere using a portable meeting button.    |
-| [Camera Man](../crewmates/camera-man)   | <Badge text="Crewmate" variant="note"/>   | Can access all cameras from anywhere on the map.                    |
-| [Crewmate](../crewmates/crewmate)       | <Badge text="Crewmate" variant="note"/>   | Standard crew member with no special abilities.                     |
-| [Detective](../crewmates/detective)     | <Badge text="Crewmate" variant="note"/>   | Can track other players by their footprints.                        |
-| [Engineer](../crewmates/engineer)       | <Badge text="Crewmate" variant="note"/>   | Can use vents like an Impostor.                                     |
-| [Mayor](../crewmates/mayor)             | <Badge text="Crewmate" variant="note"/>   | Has two votes in meetings instead of one.                           |
-| [Seer](../crewmates/seer)               | <Badge text="Crewmate" variant="note"/>   | Can reveal the team of a selected player.                           |
-| [Sheriff](../crewmates/sheriff)         | <Badge text="Crewmate" variant="note"/>   | Can kill a player, but risks dying if targeting a Crewmate.         |
-| [Snitch](../crewmates/snitch)           | <Badge text="Crewmate" variant="note"/>   | Reveals Impostors when all tasks are completed                      |
-| [The Damned](../crewmates/the-damned)   | <Badge text="Crewmate" variant="note"/>   | No abilities, but killers automatically self-report.                |
-| [Camouflager](../imposters/camouflager) | <Badge text="Imposter" variant="danger"/> | Can disguise all players as a single random player.                 |
-| [Imposter](../imposters/imposter)       | <Badge text="Imposter" variant="danger"/> | Can kill players and sabotage ship systems.                         |
-| [Miner](../imposters/miner)             | <Badge text="Imposter" variant="danger"/> | Imposter who can create personal vent networks.                     |
-| [Morphling](../imposters/morphling)     | <Badge text="Imposter" variant="danger"/> | Can morph into other players, copying their name, skin, and helmet. |
-| [Phantom](../imposters/phantom)         | <Badge text="Imposter" variant="danger"/> | Can enter ghost mode to move freely and kill while invisible.       |
-| [Arsonist](../neutral/arsonist)         | <Badge text="Neutral" variant="tip"/>     | Wins by dousing all players                                         |
-| [Cannibal](../neutral/cannibal)         | <Badge text="Neutral" variant="tip"/>     | Wins by consuming a set number of corpses.                          |
-| [Jester](../neutral/jester)             | <Badge text="Neutral" variant="tip"/>     | Wins by being ejected during a meeting.                             |
+| Role                                    | Team                                      | Description                                                          |
+|-----------------------------------------|-------------------------------------------|----------------------------------------------------------------------|
+| [Caller](../crewmates/caller)           | <Badge text="Crewmate" variant="note"/>   | Can call meetings from anywhere using a portable meeting button.     |
+| [Camera Man](../crewmates/camera-man)   | <Badge text="Crewmate" variant="note"/>   | Can access all cameras from anywhere on the map.                     |
+| [Crewmate](../crewmates/crewmate)       | <Badge text="Crewmate" variant="note"/>   | Standard crew member with no special abilities.                      |
+| [Detective](../crewmates/detective)     | <Badge text="Crewmate" variant="note"/>   | Can track other players by their footprints.                         |
+| [Engineer](../crewmates/engineer)       | <Badge text="Crewmate" variant="note"/>   | Can use vents like an Impostor.                                      |
+| [Mayor](../crewmates/mayor)             | <Badge text="Crewmate" variant="note"/>   | Has two votes in meetings instead of one.                            |
+| [Seer](../crewmates/seer)               | <Badge text="Crewmate" variant="note"/>   | Can reveal the team of a selected player.                            |
+| [Sheriff](../crewmates/sheriff)         | <Badge text="Crewmate" variant="note"/>   | Can kill players, but dies instead if the target is a Crewmate.      |
+| [Snitch](../crewmates/snitch)           | <Badge text="Crewmate" variant="note"/>   | Sees the Impostors once all tasks are completed.                     |
+| [The Damned](../crewmates/the-damned)   | <Badge text="Crewmate" variant="note"/>   | No special abilities, but any killer who strikes them auto-reports.  |
+| [Camouflager](../imposters/camouflager) | <Badge text="Imposter" variant="danger"/> | Can disguise all players to look like a single random player.        |
+| [Imposter](../imposters/imposter)       | <Badge text="Imposter" variant="danger"/> | Can kill Crewmates and sabotage ship systems.                        |
+| [Miner](../imposters/miner)             | <Badge text="Imposter" variant="danger"/> | Can create personal vent networks anywhere on the map.               |
+| [Morphling](../imposters/morphling)     | <Badge text="Imposter" variant="danger"/> | Can morph into other players, copying their name, skin, and helmet.  |
+| [Phantom](../imposters/phantom)         | <Badge text="Imposter" variant="danger"/> | Can enter ghost mode to move freely and kill while invisible.        |
+| [Arsonist](../neutral/arsonist)         | <Badge text="Neutral" variant="tip"/>     | Wins by dousing and igniting all players.                            |
+| [Cannibal](../neutral/cannibal)         | <Badge text="Neutral" variant="tip"/>     | Wins by consuming a set number of corpses.                           |
+| [Jester](../neutral/jester)             | <Badge text="Neutral" variant="tip"/>     | Wins by getting ejected during a meeting.                            |
