@@ -1,37 +1,73 @@
 ---
 title: Getting Started
-description: A guide to how to get started with the Plugin.
+description: Set up the Among Us in Minecraft plugin in just a few minutes.
 ---
 
-import { Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, FileTree } from '@astrojs/starlight/components';
+
+Get the Among Us experience in your Minecraft server — follow the steps below to get up and running quickly.
+
+## Prerequisites
+
+- A running **Paper** (or compatible) Minecraft server
+- Server operator / file system access
+
+---
+
+## Installation
 
 <Steps>
 
-    1. Get the plugin.
+    1. **Download the plugin.**
+
+        Choose your preferred method:
 
         <Tabs>
+            <TabItem label="Download (Recommended)">
+                1. Open the [Releases](https://github.com/Fantamomo/among-us-in-minecraft/releases/) page on GitHub.
+                2. Expand **Assets** on the latest release.
+                3. Download the file named `AmongUs-x.x-SNAPSHOT-all.jar`.
+            </TabItem>
             <TabItem label="Build from Source">
+                Clone the repository and build the plugin using Gradle:
+
                 ```bash
                 git clone https://github.com/Fantamomo/among-us-in-minecraft
                 cd among-us-in-minecraft
                 ./gradlew shadowJar
                 ```
-                The plugin will be in `build/libs/`.
-            </TabItem>
-            <TabItem label="Download">
 
-                :::caution
-                Current there is no other way then building from source.
-                We hope to change that soon.
-                :::
-
+                The compiled `.jar` will be located in `build/libs/`.
             </TabItem>
         </Tabs>
 
-    2. Place it in your `/plugins` directory.
+    2. **Add the plugin to your server.**
 
-    3. Start your server.
+        Move the downloaded `.jar` file into your server's `plugins/` directory:
 
-    4. You are good to go.
+        <FileTree>
+        - plugins/
+          - **AmongUs-x.x-SNAPSHOT-all.jar** the downloaded .jar file
+          - ...
+        - ...
+        </FileTree>
+
+    3. **Start your server.**
+
+        If your server is already running, stop it first, then start it again.
+
+        :::caution
+        This plugin does **not** support `/reload`. Always perform a full restart — both on first install and after every update.
+        :::
+
+    4. **Verify the installation.**
+
+        Once the server is running, check your console for a line like:
+
+        ```log
+        [AmongUs] Enabling AmongUs vX.X-SNAPSHOT
+        ```
+
+        If you see it, you're all set! Next, adjust your [config.yml](/configuration/config-yml) to your liking or jump straight into [creating your first area](../create-an-area).
 
 </Steps>
