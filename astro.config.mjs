@@ -97,7 +97,8 @@ export default defineConfig({
                         {label: 'Transfer Data', slug: 'tasks/transfer-data'},
                         {label: 'Verify ID', slug: 'tasks/verify-id'}
                     ]
-                }
+                },
+                {label: 'Demo', slug: 'demo/demo'},
             ],
         }),
     ],
