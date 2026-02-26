@@ -11,21 +11,9 @@ This plugin provides a `config.yml` file located at:
 Below is the **default configuration**:
 
 ```yaml
-# The msg-command-blocker module prevents players from sending private messages
-# (/msg, /tell, /w, etc.) while they are in a game. This helps maintain fair play
-# and prevents players from sharing information that could affect the outcome.
 msg-command-blocker:
-  # Master switch to enable or disable blocking of private message commands (/msg, /tell, /w, etc.).
   disabled: false
-
-  # Legacy mode for command blocking:
-  # - false: Attempts to automatically intercept private message commands, even when executed via /execute.
-  # - true: Uses the explicit "commands" list below to determine which commands to block.
-  #   Recommended if other plugins override /msg or if console errors suggest enabling legacy mode.
   legacy: false
-
-  # List of commands to block when legacy mode is enabled.
-  # These commands will be prevented while a player is in a game.
   commands:
     - msg
     - tell
@@ -34,34 +22,11 @@ msg-command-blocker:
     - minecraft:msg
     - minecraft:w
 
-# MorphBlender / Skin Animation Configuration
-# This section allows you to enable or disable the MorphBlender
-# and choose which animation to use for morphing skins.
-# A valid Mineskin API key is required for this feature.
-# See secrets.properties for more information.
 morph-blender:
-  # Master switch to enable/disable MorphBlender
-  # If this is off, a player changing form will simply acquire the chosen skin.
   enabled: false
-
-  # Blender to use
-  # Available blenders:
-  # - virus: Virus blending
-  # - fade: Fade blending
-  # - checker: Checkerboard blending
-  # default: virus
   blender: virus
-
-  # Sets the visibility of the skins on https://mineskin.org/skins
-  # Available visibilities:
-  # - public: Anyone can see the skin (not recommended)
-  # - unlisted: It won't be shown in the skin list, but everyone with the link can access it
-  # - private: Only you can see and access the skin
-  # - auto: if your MineSkin Plan allows private skins, it will be private, otherwise it will be unlisted
-  # default: auto
   visibility: auto
 
-# Roles and Modifications
 roles:
   disabled:
   #  - phantom
@@ -70,7 +35,11 @@ modifications:
   disabled:
   #  - small
 
-# Should we animate the scoreboard?
+game-creation:
+  everyone-can-create: false
+  max-games: 10
+  ignore-admins: true
+
 animate-scoreboard: true
 ```
 
@@ -89,7 +58,7 @@ Private message commands (e.g., `/msg`, `/tell`, `/w`) are **blocked** if:
 
 Commands are **allowed** if:
 
-* The sender and the target are the same player
+* Sender and target are the same player
 * Neither player is in a game
 * The module is disabled
 
@@ -115,19 +84,19 @@ legacy: false
 
 :::danger
 Legacy mode can only check the sender, not the target.
-
-That means that a player outside a game can still send a private message to players in a game.
+This means players outside a game can still message players inside a game.
 :::
 
 :::caution
 Enable legacy mode if:
-- Another plugin overrides `/msg` or registers custom commands that allow sending private messages
-- You experience console warnings related to command interception
+* Another plugin overrides `/msg`
+* Custom private message commands are registered
+* You receive console warnings related to command interception
 :::
 
 #### commands
 
-Only used when `legacy: true`. Defines exactly which commands to block:
+Only used when `legacy: true`.
 
 ```yaml
 commands:
@@ -136,7 +105,7 @@ commands:
   - w
 ```
 
-Add more aliases if your server uses them.
+Add additional aliases if your server uses them.
 
 ---
 
@@ -146,9 +115,9 @@ Add more aliases if your server uses them.
 MorphBlender enables animated skin transitions when a player changes form.
 :::
 
-This feature requires a valid **MineSkin API key** configured in `secrets.properties`.
+A valid **MineSkin API key** must be configured in `secrets.properties`.
 
-If disabled, players will instantly switch to the new skin without animation.
+If disabled, players switch skins instantly without animation.
 
 ### Configuration Options
 
@@ -158,8 +127,8 @@ If disabled, players will instantly switch to the new skin without animation.
 enabled: false
 ```
 
-- `true` → Animated morph transitions are enabled
-- `false` → Instant skin switch
+* `true` → Animated morph transitions
+* `false` → Instant skin switch
 
 #### blender
 
@@ -171,7 +140,7 @@ Available options:
 
 * `virus` – Viral spreading animation
 * `fade` – Smooth fade transition
-* `checker` – Checkerboard-style blending
+* `checker` – Checkerboard blending
 
 #### visibility
 
@@ -184,15 +153,13 @@ Available options:
 * `public` – Visible to everyone (not recommended)
 * `unlisted` – Accessible via link only
 * `private` – Only visible to your MineSkin account
-* `auto` – Best option based on your plan (recommended)
+* `auto` – Automatically selects best visibility based on your plan (recommended)
 
 ---
 
 ## Roles
 
-Any role listed here will be **unavailable** during gameplay.
-
-### Configuration
+Defines roles that are disabled and hidden from gameplay.
 
 ```yaml
 roles:
@@ -200,16 +167,14 @@ roles:
     - phantom
 ```
 
-* `disabled:` → Lists roles to be disabled
-* Disabled roles are **hidden** and not selectable
+* Roles listed under `disabled:` cannot be selected
+* Disabled roles are completely hidden in-game
 
 ---
 
 ## Modifications
 
-Any modification listed here will be **unavailable** during gameplay.
-
-### Configuration
+Defines modifications that are disabled and hidden from gameplay.
 
 ```yaml
 modifications:
@@ -217,8 +182,51 @@ modifications:
     - small
 ```
 
-* `disabled:` → Lists modifications to be disabled
-* Disabled modifications are **hidden** and not selectable
+* Modifications listed under `disabled:` cannot be selected
+* Disabled modifications are completely hidden in-game
+
+---
+
+## Game Creation
+
+Controls who can create games and how many games can exist simultaneously.
+
+```yaml
+game-creation:
+  everyone-can-create: false
+  max-games: 10
+  ignore-admins: true
+```
+
+### Configuration Options
+
+#### everyone-can-create
+
+```yaml
+everyone-can-create: false
+```
+
+* `true` → All players can create games
+* `false` → Only players with permission `amongus.admin.game.create` can create games
+
+#### max-games
+
+```yaml
+max-games: 10
+```
+
+Defines the maximum number of games that can exist at the same time.
+
+If the limit is reached, no additional games can be created.
+
+#### ignore-admins
+
+```yaml
+ignore-admins: true
+```
+
+* `true` → Players with `amongus.admin.game.create` can bypass the `max-games` limit
+* `false` → Even admins are restricted by `max-games`
 
 ---
 
@@ -252,6 +260,11 @@ roles:
 
 modifications:
   disabled: []
+
+game-creation:
+  everyone-can-create: false
+  max-games: 10
+  ignore-admins: true
 
 animate-scoreboard: true
 ```
