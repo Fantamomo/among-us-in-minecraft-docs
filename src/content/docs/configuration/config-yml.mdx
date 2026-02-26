@@ -1,14 +1,15 @@
 ---
 title: config.yml
+description: Among Us configuration file.
 ---
 
-This plugin provides a `config.yml` file located at:
+The plugin's configuration file is located at:
 
 ```
-/plugins/AmongUs/config.yml
+plugins/AmongUs/config.yml
 ```
 
-Below is the **default configuration**:
+Below is the full default configuration:
 
 ```yaml
 msg-command-blocker:
@@ -45,58 +46,41 @@ animate-scoreboard: true
 
 ---
 
-## Msg-Command-Blocker
+## msg-command-blocker
 
-Private messaging can break gameplay by allowing hidden information to be shared. This module ensures fair play by intercepting commands before they execute.
+Private messaging can break gameplay by allowing hidden information to be shared between players. This module intercepts message commands before they execute to ensure fair play.
 
-### How It Works
+Commands such as `/msg`, `/tell`, and `/w` are **blocked** when the sender or at least one target is in an active game. They are **allowed** if neither player is in a game, or if the sender and target are the same person.
 
-Private message commands (e.g., `/msg`, `/tell`, `/w`) are **blocked** if:
-
-* The **sender** is in a game
-* At least one **target player** is in a game
-
-Commands are **allowed** if:
-
-* Sender and target are the same player
-* Neither player is in a game
-* The module is disabled
-
-### Configuration Options
-
-#### disabled
+### disabled
 
 ```yaml
 disabled: false
 ```
 
-* `false` → Blocking is active
-* `true` → No commands are blocked
+- `false` → Command blocking is active.
+- `true` → No commands are blocked.
 
-#### legacy
+### legacy
 
 ```yaml
 legacy: false
 ```
 
-* `false` → Automatically intercepts private message commands (recommended)
-* `true` → Only commands listed under `commands:` are blocked
+- `false` → Automatically intercepts private message commands (recommended).
+- `true` → Only blocks the commands explicitly listed under `commands:`.
 
 :::danger
-Legacy mode can only check the sender, not the target.
-This means players outside a game can still message players inside a game.
+Legacy mode can only check the sender, not the target. This means players outside a game can still message players inside one.
 :::
 
 :::caution
-Enable legacy mode if:
-* Another plugin overrides `/msg`
-* Custom private message commands are registered
-* You receive console warnings related to command interception
+Enable legacy mode if another plugin overrides `/msg`, if your server uses custom private message commands, or if you see console warnings related to command interception.
 :::
 
-#### commands
+### commands
 
-Only used when `legacy: true`.
+Only used when `legacy: true`. Lists the commands to block:
 
 ```yaml
 commands:
@@ -105,61 +89,53 @@ commands:
   - w
 ```
 
-Add additional aliases if your server uses them.
+Add any additional aliases your server uses.
 
 ---
 
-## MorphBlender
+## morph-blender
 
-:::info
-MorphBlender enables animated skin transitions when a player changes form.
-:::
+Enables animated skin transitions when a player changes form (e.g. the [Morphling](/roles/imposters/morphling) role). A valid **MineSkin API key** must be set in `secrets.properties`. If disabled, skin changes happen instantly without any animation.
 
-A valid **MineSkin API key** must be configured in `secrets.properties`.
-
-If disabled, players switch skins instantly without animation.
-
-### Configuration Options
-
-#### enabled
+### enabled
 
 ```yaml
 enabled: false
 ```
 
-* `true` → Animated morph transitions
-* `false` → Instant skin switch
+- `true` → Animated morph transitions.
+- `false` → Instant skin switch.
 
-#### blender
+### blender
 
 ```yaml
 blender: virus
 ```
 
-Available options:
+The animation style used during a morph:
 
-* `virus` – Viral spreading animation
-* `fade` – Smooth fade transition
-* `checker` – Checkerboard blending
+- `virus` – Viral spreading animation.
+- `fade` – Smooth fade transition.
+- `checker` – Checkerboard blending.
 
-#### visibility
+### visibility
 
 ```yaml
 visibility: auto
 ```
 
-Available options:
+Controls the visibility of generated skins on MineSkin:
 
-* `public` – Visible to everyone (not recommended)
-* `unlisted` – Accessible via link only
-* `private` – Only visible to your MineSkin account
-* `auto` – Automatically selects best visibility based on your plan (recommended)
+- `auto` – Automatically selects the best option based on your plan (recommended).
+- `unlisted` – Accessible via direct link only.
+- `private` – Only visible to your MineSkin account.
+- `public` – Visible to everyone (not recommended).
 
 ---
 
-## Roles
+## roles
 
-Defines roles that are disabled and hidden from gameplay.
+Defines which roles are disabled and hidden from gameplay:
 
 ```yaml
 roles:
@@ -167,14 +143,13 @@ roles:
     - phantom
 ```
 
-* Roles listed under `disabled:` cannot be selected
-* Disabled roles are completely hidden in-game
+Roles listed under `disabled:` cannot be selected and are completely hidden in-game.
 
 ---
 
-## Modifications
+## modifications
 
-Defines modifications that are disabled and hidden from gameplay.
+Defines which modifications are disabled and hidden from gameplay:
 
 ```yaml
 modifications:
@@ -182,51 +157,39 @@ modifications:
     - small
 ```
 
-* Modifications listed under `disabled:` cannot be selected
-* Disabled modifications are completely hidden in-game
+Modifications listed under `disabled:` cannot be selected and are completely hidden in-game.
 
 ---
 
-## Game Creation
+## game-creation
 
-Controls who can create games and how many games can exist simultaneously.
+Controls who can create games and how many can run simultaneously.
 
-```yaml
-game-creation:
-  everyone-can-create: false
-  max-games: 10
-  ignore-admins: true
-```
-
-### Configuration Options
-
-#### everyone-can-create
+### everyone-can-create
 
 ```yaml
 everyone-can-create: false
 ```
 
-* `true` → All players can create games
-* `false` → Only players with permission `amongus.admin.game.create` can create games
+- `true` → All players can create games.
+- `false` → Only players with the `amongus.admin.game.create` permission can create games.
 
-#### max-games
+### max-games
 
 ```yaml
 max-games: 10
 ```
 
-Defines the maximum number of games that can exist at the same time.
+The maximum number of games that can exist at the same time. Once the limit is reached, no additional games can be created.
 
-If the limit is reached, no additional games can be created.
-
-#### ignore-admins
+### ignore-admins
 
 ```yaml
 ignore-admins: true
 ```
 
-* `true` → Players with `amongus.admin.game.create` can bypass the `max-games` limit
-* `false` → Even admins are restricted by `max-games`
+- `true` → Players with `amongus.admin.game.create` can bypass the `max-games` limit.
+- `false` → The `max-games` limit applies to everyone, including admins.
 
 ---
 
@@ -236,14 +199,14 @@ ignore-admins: true
 animate-scoreboard: true
 ```
 
-* `true` → Scoreboard updates dynamically with animation
-* `false` → Static scoreboard
+- `true` → The scoreboard updates dynamically with animation.
+- `false` → Static scoreboard display.
 
 ---
 
 ## Recommended Setup
 
-For most servers:
+For most servers, the following configuration is a good starting point:
 
 ```yaml
 msg-command-blocker:
