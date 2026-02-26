@@ -1,5 +1,6 @@
 ---
 title: Create a Game Area
+description: How to create and configure a game area for the Among Us plugin.
 ---
 
 A **Game Area** defines a complete playable map for the Among Us plugin.
@@ -11,7 +12,7 @@ This guide explains how to create and configure an area step by step.
 
 ## Create a New Area
 
-Use the following command:
+Use the following command to register a new area:
 
 ```
 /aua area <name> create
@@ -19,13 +20,11 @@ Use the following command:
 
 - `<name>` – The unique name of your area.
 
-If successful, the area will be registered and ready for configuration.
-
 ---
 
 ## Set Area Locations
 
-For the plugin to work correctly, you must define several required locations.
+For the plugin to work correctly, you must define several locations.
 
 ### Command
 
@@ -33,21 +32,13 @@ For the plugin to work correctly, you must define several required locations.
 /aua area <name> set <location> <pos> [rotation]
 ```
 
-### Parameters
+- `<location>` – The property you want to configure (see the tables below).
+- `<pos>` – The position (`x y z`).
+- `[rotation]` – Optional yaw and pitch (only required for specific locations).
 
-- `<location>` – The property you want to configure (see list below)
-- `<pos>` – The position (x y z)
-- `[rotation]` – Optional yaw and pitch (only required for specific locations)
+### Using `@s`
 
-You can also use:
-
-```
-@S
-```
-
-Instead of `<pos>` and `[rotation]`, `@s` will automatically use your current position and rotation.
-
-Example:
+Instead of typing out `<pos>` and `[rotation]` manually, you can use `@s` to automatically use your current position and rotation:
 
 ```
 /aua area Skeld set lobbySpawn @s
@@ -57,7 +48,7 @@ Example:
 
 ## Required Locations
 
-The following locations **must be set** for the area to be valid:
+All of the following locations **must be set** for the area to be valid and startable:
 
 | Location             | Description                                        |
 |----------------------|----------------------------------------------------|
@@ -66,18 +57,16 @@ The following locations **must be set** for the area to be valid:
 | `lobbySpawn`         | Where players spawn when joining a game            |
 | `gameSpawn`          | Where players spawn when the game starts           |
 | `meetingBlock`       | The block players click to call a meeting          |
-| `ejectedFallPoint`   | Where voted players are teleported (e.g. lava pit) |
-| `ejectedViewPoint`   | Where others watch the ejection                    |
+| `ejectedFallPoint`   | Where voted-out players are teleported             |
+| `ejectedViewPoint`   | Where other players watch the ejection from        |
 | `cameraJoinPointMin` | Minimum corner of the camera interaction area      |
 | `cameraJoinPointMax` | Maximum corner of the camera interaction area      |
-
-An area will **not start** unless all required locations are configured.
 
 ---
 
 ## Optional Locations
 
-These locations enable additional gameplay features:
+These locations enable additional gameplay features. You only need to configure the ones relevant to your map.
 
 ### Wardrobe
 
@@ -89,7 +78,7 @@ These locations enable additional gameplay features:
 
 ### Meeting Room Restriction
 
-Used to prevent players from leaving during an active meeting.
+Prevents players from leaving the meeting room during an active meeting.
 
 | Location         | Description                    |
 |------------------|--------------------------------|
@@ -105,11 +94,7 @@ Used to prevent players from leaving during an active meeting.
 | `lightPosMin` | Minimum corner of lever visibility area |
 | `lightPosMax` | Maximum corner of lever visibility area |
 
-Additional lever blocks must be added using:
-
-```
-/aua area <name> add lights_levers <block>
-```
+Lever blocks must be registered separately — see [Add Light Levers](#add-light-levers) below.
 
 ---
 
@@ -126,16 +111,16 @@ Additional lever blocks must be added using:
 
 ### Communications Sabotage
 
-| Location                    | Description                  |
-|-----------------------------|------------------------------|
-| `communications`            | Block to fix communications  |
-| `outgoingCommunicationBeam` | Beam following player cursor |
+| Location                    | Description                           |
+|-----------------------------|---------------------------------------|
+| `communications`            | Block used to fix communications      |
+| `outgoingCommunicationBeam` | Beam that follows the player's cursor |
 
 ---
 
-## Adding Additional Gameplay Elements
+## Adding Additional Elements
 
-Some features are added via the `add` command.
+Some features are registered via the `add` subcommand rather than `set`.
 
 ### Add Vents
 
@@ -143,10 +128,8 @@ Some features are added via the `add` command.
 /aua area <name> add vents <id> <block>
 ```
 
-- `<id>` – Vent group ID
-- `<block>` – Block position
-
-Vents with the same ID are connected.
+- `<id>` – Vent group ID. Vents sharing the same ID are connected to each other.
+- `<block>` – Block position of the vent.
 
 ---
 
@@ -156,7 +139,7 @@ Vents with the same ID are connected.
 /aua area <name> add cams <name> @s
 ```
 
-Adds a named camera at your current eye location.
+Adds a named camera at your current eye position.
 
 ---
 
@@ -166,47 +149,29 @@ Adds a named camera at your current eye location.
 /aua area <name> add lights_levers <block>
 ```
 
-Adds a lever used during the lights sabotage.
+Registers a lever block used during the lights sabotage.
 
 ---
 
 ### Add Tasks
 
-Use the following command to add tasks to an area:
-
 ```
-
 /aua area <name> add tasks <task_id> <block>
-
 ```
 
-- `<task_id>` – Internal task ID
-- `<block>` – Position of the block that opens the task GUI
-
-:::note
-You can find the `task_id` in the task documentation. It is listed at the top of the page under "Id".
-:::
+- `<task_id>` – The internal task ID, found at the top of each task's documentation page under **Id**.
+- `<block>` – Position of the block that opens the task GUI.
 
 :::caution
-Some tasks have multiple positions. In that case, there is an additional column with the ID you should use.
+    Some tasks span multiple positions. In that case, an additional ID column will be listed in the task's documentation — make sure to use it.
 :::
 
 ---
 
 ## Validate Your Area
 
-An area is considered **valid** when all required locations are set.
-
-If something is missing, the system will report which properties still need configuration.
-
----
+Once all required locations are set, your area is considered **valid** and can host a game. If anything is missing, the plugin will report which properties still need to be configured.
 
 :::tip
-
-- Use `@s` to avoid manual coordinate input.
-- Make sure block-based locations (like `meetingBlock`) are set precisely on the correct block.
-- For ejections, use a dramatic fall (e.g., into lava).
-
+    Use `@s` whenever possible to avoid manual coordinate input. For block-based locations like `meetingBlock`, make sure you're looking at the exact block before running the command.
 :::
-
-Your area is now ready to host a game!
