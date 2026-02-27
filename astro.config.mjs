@@ -37,7 +37,8 @@ export default defineConfig({
                     items: [
                         {label: 'Meeting', slug: 'gameplay/meeting'},
                         {label: 'Sabotage', slug: 'gameplay/sabotage'},
-                        {label: 'Vents', slug: 'gameplay/vents'}
+                        {label: 'Vents', slug: 'gameplay/vents'},
+                        {label: 'Tasks', slug: 'gameplay/tasks'},
                     ]
                 },
                 {
