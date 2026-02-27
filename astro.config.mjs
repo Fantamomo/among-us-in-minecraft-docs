@@ -37,6 +37,7 @@ export default defineConfig({
                     items: [
                         {label: 'Meeting', slug: 'gameplay/meeting'},
                         {label: 'Sabotage', slug: 'gameplay/sabotage'},
+                        {label: 'Vents', slug: 'gameplay/vents'}
                     ]
                 },
                 {
@@ -47,9 +48,9 @@ export default defineConfig({
                             label: 'Crewmates',
                             collapsed: true,
                             items: [
+                                {label: 'Crewmate', slug: 'roles/crewmates/crewmate'},
                                 {label: 'Caller', slug: 'roles/crewmates/caller'},
                                 {label: 'Camera Man', slug: 'roles/crewmates/camera-man'},
-                                {label: 'Crewmate', slug: 'roles/crewmates/crewmate'},
                                 {label: 'Detective', slug: 'roles/crewmates/detective'},
                                 {label: 'Engineer', slug: 'roles/crewmates/engineer'},
                                 {label: 'Mayor', slug: 'roles/crewmates/mayor'},
@@ -63,8 +64,8 @@ export default defineConfig({
                             label: 'Imposters',
                             collapsed: true,
                             items: [
-                                {label: 'Camouflager', slug: 'roles/imposters/camouflager'},
                                 {label: 'Imposter', slug: 'roles/imposters/imposter'},
+                                {label: 'Camouflager', slug: 'roles/imposters/camouflager'},
                                 {label: 'Miner', slug: 'roles/imposters/miner'},
                                 {label: 'Morphling', slug: 'roles/imposters/morphling'},
                                 {label: 'Phantom', slug: 'roles/imposters/phantom'},
@@ -109,7 +110,6 @@ export default defineConfig({
                     label: 'Demo',
                     items: [
                         {label: 'Server', slug: 'demo/demo'},
-
                         {label: 'Map', slug: 'demo/map'},
                     ]
                 }
