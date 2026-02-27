@@ -1,0 +1,84 @@
+---
+title: Map Setup
+---
+
+import { Steps, FileTree } from '@astrojs/starlight/components';
+
+This guide walks you through downloading and setting up a pre-built map for use with the Among Us in Minecraft plugin.
+
+:::note[About the map]
+The map used here is based on the [Polus – Among Us](https://www.planetminecraft.com/project/polus-among-us-4875493/) build from Planet Minecraft, modified to work with this plugin.
+**Please do not download the map from the original Planet Minecraft link** — it will not work without the modifications made for this plugin.
+:::
+
+## What you'll need
+
+- A running Minecraft server (`1.21.1`)
+- The Among Us in Minecraft plugin installed
+- The files below:
+
+| File                           | Download                                                                                               |
+|--------------------------------|--------------------------------------------------------------------------------------------------------|
+| Map (`polus.zip`)              | [Download](https://among-us-in-minecraft.docs.fantamomo.com/polus.zip)                                 |
+| Area file (`f4facaf7-...json`) | [Download](https://among-us-in-minecraft.docs.fantamomo.com/f4facaf7-046f-40ec-9cc3-0ed13f965655.json) |
+
+---
+
+## Setup
+
+<Steps>
+    1. **Download and extract the map**
+
+        Download `polus.zip` and extract it. You should get a folder named `polus/`.
+
+    2. **Place the map in your server directory**
+
+        Move the `polus/` folder into the root of your server directory:
+
+        <FileTree>
+            - your-server-folder/
+              - **polus/** ← place it here
+              - plugins/
+              - server.jar
+              - server.properties
+              - ...
+        </FileTree>
+
+    3. **Download the area file**
+
+        Download `f4facaf7-046f-40ec-9cc3-0ed13f965655.json`.
+
+    4. **Place the area file in the plugin folder**
+
+        Move the `.json` file into the following directory:
+
+        <FileTree>
+            - your-server-folder/
+              - plugins/
+                - AmongUs/
+                  - areas/
+                    - **f4facaf7-046f-40ec-9cc3-0ed13f965655.json** ← place it here
+        </FileTree>
+
+        Create the `areas/` folder if it doesn't exist yet.
+
+    5. **Select the map in `server.properties`**
+
+        Open `server.properties` and set `level-name` to `polus`:
+
+        ```properties
+        level-name=polus
+        ```
+
+    6. **Start your server and play!**
+
+        Launch your server. The map and area configuration will be loaded automatically.
+        Create a new game with `/au create test` and you're good to go.
+</Steps>
+
+:::tip[Verify the area loaded correctly]
+Look in the console for a line like:
+```
+[GameAreaManager] Loaded area test
+```
+:::

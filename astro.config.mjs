@@ -98,7 +98,14 @@ export default defineConfig({
                         {label: 'Verify ID', slug: 'tasks/verify-id'}
                     ]
                 },
-                {label: 'Demo', slug: 'demo/demo'},
+                {
+                    label: 'Demo',
+                    items: [
+                        {label: 'Server', slug: 'demo/demo'},
+
+                        {label: 'Map', slug: 'demo/map'},
+                    ]
+                }
             ],
         }),
     ],
