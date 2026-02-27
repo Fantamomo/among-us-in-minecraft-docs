@@ -33,6 +33,13 @@ export default defineConfig({
                     ]
                 },
                 {
+                    label: 'Gameplay',
+                    items: [
+                        {label: 'Meeting', slug: 'gameplay/meeting'},
+                        {label: 'Sabotage', slug: 'gameplay/sabotage'},
+                    ]
+                },
+                {
                     label: 'Roles',
                     items: [
                         {label: 'Role List', slug: 'roles/roles'},

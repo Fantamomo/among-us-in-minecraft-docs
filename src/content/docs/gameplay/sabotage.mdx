@@ -1,0 +1,53 @@
+---
+title: Sabotage
+description: An overview of all available sabotages in this plugin, how they work, and how to fix them.
+---
+
+Currently there are 3 sabotages:
+
+- Seismic Stabilizer
+- Lights
+- Communication
+
+## Seismic Stabilizer
+
+This is the only critical sabotage currently in the game.
+
+For it to work, two [location](/guides/create-an-area#seismic-stabilizers-sabotage) sets must be configured.
+
+There are 4 locations in total:
+
+- **seismicStabilizers1:** The location of the first button used to fix the sabotage.
+- **seismicStabilizers2:** The location of the second button used to fix the sabotage.
+- **seismicStabilizers1Particle:** Optional — if set, this location is used instead of `seismicStabilizers1` to shoot a beam into the sky.
+- **seismicStabilizers2Particle:** Optional — if set, this location is used instead of `seismicStabilizers2` to shoot a beam into the sky.
+
+The beam color corresponds to the state of its button:
+
+- **Green:** The button is pressed.
+- **Red:** The button is not pressed.
+
+To fix the sabotage, both buttons must be pressed simultaneously.
+
+## Lights
+
+When lights are sabotaged, all crewmates receive the blindness effect, limiting their vision and removing their ability to sprint.
+
+Impostors are not affected by this sabotage, meaning they can still sprint — which may expose them to observant crewmates.
+
+To fix the sabotage, all registered [levers](/guides/create-an-area#add-light-levers) must be switched to green.
+Levers will glow when the player is within the area defined by [`lightPosMin` and `lightPosMax`](/guides/create-an-area#lights-sabotage).
+
+## Communication
+
+When communication is sabotaged, crewmates can no longer see their tasks in the scoreboard or the locator bar. They can, however, still complete tasks.
+
+To fix the sabotage, a player must click the communication block and then locate the satellite by looking up into the sky. The action bar displays a signal strength indicator — the stronger the signal, the closer the crosshair is to the satellite. The player must aim directly at the satellite and hold their crosshair steady for a few seconds to lock the signal and restore communications.
+
+## Bossbar
+
+When a sabotage is active, a bossbar will appear showing the current status. The information displayed depends on the sabotage type:
+
+- **Seismic Stabilizer:** A countdown timer starting from 60 seconds.
+- **Lights:** The number of levers currently switched to green.
+- **Communication:** The strongest signal reading among all players.

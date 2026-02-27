@@ -1,0 +1,50 @@
+---
+title: Meeting
+description: Learn how meetings are called, how discussions and voting work, and what happens during a meeting.
+---
+
+A meeting can be called for two reasons:
+
+1. A player presses the meeting block.
+2. A player near a corpse clicks the fire-rocket to report the body.
+
+When a meeting is called, any active critical sabotage will be resolved immediately.
+A non-critical sabotage will be paused and resumed after the meeting ends.
+
+All players will be teleported to the meeting block when a meeting is called.
+
+A title will indicate why the meeting was called, and the subtitle will show who called it.
+
+A chat message will display any dead bodies that were found. If the meeting was triggered by a dead body report, that body will be marked with a megaphone icon.
+
+## Discussion Phase
+
+The discussion phase begins first. The default duration is **10 seconds**.
+
+## Voting Phase
+
+After the discussion, the voting phase begins. The default duration is **1 minute**.
+
+During the voting phase, players can open the voting menu by **sneaking**.
+
+The voting menu is divided into 3 sections:
+
+1. **Left:** A barrier item — clicking it closes the menu. (You can also close it with `ESC`)
+2. **Middle:** A list of all players and a skip button.
+    - Players are represented by their heads with their names displayed.
+    - The skip button is represented by a Structure Void item.
+3. **Right:** This slot is empty when the menu is first opened. When a player or skip item in the middle is clicked, it is placed in this slot. Clicking the item in this slot confirms and submits your vote.
+
+## Meeting End
+
+When the time runs out or all players have submitted their votes, the meeting ends and the results are displayed as a title.
+
+If a player has been voted out, all players will be teleported to the [ejectedViewPoint](/guides/create-an-area#required-locations), while the ejected player is teleported to the [ejectedFallPoint](/guides/create-an-area#required-locations).
+
+The game then waits for the ejected player to die — a lava pool is recommended for this purpose. If the player does not die within a specific time, the meeting will end automatically.
+
+Afterward, all remaining players are teleported back to their previous locations and the game checks for a winner.
+
+:::caution
+The mayor vote will not prevent the meeting from ending. If the mayor is the last person to vote, they can only cast their normal vote — the mayor's second vote cannot be used if the meeting ends before they have the chance to submit it.
+:::
