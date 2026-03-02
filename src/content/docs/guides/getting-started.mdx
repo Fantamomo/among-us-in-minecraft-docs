@@ -34,10 +34,38 @@ Get the Among Us experience in your Minecraft server — follow the steps below 
                 ```bash
                 git clone https://github.com/Fantamomo/among-us-in-minecraft
                 cd among-us-in-minecraft
+                ```
+
+                This plugin depends on packages hosted on **GitHub Packages**, which requires authentication — even for read access.
+
+                Create or edit your `~/gradle.properties` file and add your GitHub credentials:
+
+                ```properties
+                gpr.user=YOUR_GITHUB_USERNAME
+                gpr.key=YOUR_GITHUB_TOKEN
+                ```
+
+                :::tip[Creating a token]
+                <Steps>
+                    1. Open [GitHub Tokens](https://github.com/settings/tokens)
+                    2. Click **Generate new token**
+                    3. Select `read:packages`.
+                    4. Click **Generate token**.
+                    5. Place it in `~/gradle.properties`
+                </Steps>
+                :::
+
+                Then build the plugin:
+
+                ```bash
                 ./gradlew shadowJar
                 ```
 
                 The compiled `.jar` will be located in `build/libs/`.
+
+                :::note
+                The authentication requirement for GitHub Packages is a known inconvenience. We hope to migrate the dependencies to a public registry in the future to simplify this process.
+                :::
             </TabItem>
         </Tabs>
 
