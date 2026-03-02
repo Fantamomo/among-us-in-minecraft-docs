@@ -1,22 +1,46 @@
 ---
-title: Welcome to Among Us in Minecraft
-description: Documentation for Among Us in Minecraft.
+title: Among Us in Minecraft
+description: Official documentation for the Among Us in Minecraft plugin.
 template: splash
 hero:
-  tagline: This are the documentation for Among Us in Minecraft.
+  tagline: Social deduction gameplay — now in Minecraft.
   image:
     file: ../../assets/houston.webp
   actions:
-    - text: Getting started
+    - text: Get Started
       link: /guides/getting-started/
       icon: right-arrow
-    - text: Demo Server
+    - text: Try the Demo Server
       link: /demo/demo
       icon: rocket
       variant: secondary
 ---
 
-:::caution
-These docs are still under construction.
-Many pages are missing or incomplete.
+import {Card, CardGrid} from '@astrojs/starlight/components';
+import LinkCard from "/src/components/LinkCard.astro";
+
+:::caution[Work in Progress]
+These docs are still under construction — many pages are missing or incomplete.
 :::
+
+## What is this?
+
+**Among Us in Minecraft** is a plugin that brings the full Among Us experience to your Minecraft server.
+Take on roles, complete tasks, hunt down Impostors — or secretly sabotage everything from the inside.
+
+## Features
+
+<CardGrid stagger>
+    <LinkCard title="18+ Unique Roles" icon="puzzle" href="./roles/roles/">
+        Play as Crewmates, Impostors, or Neutral roles — each with their own abilities and win conditions.
+    </LinkCard>
+    <Card title="Classic Gameplay" icon="star">
+        Meetings, voting, sabotage, and vents — all faithfully recreated inside Minecraft.
+    </Card>
+    <LinkCard title="Custom Maps" icon="setting" href="/guides/create-an-area/">
+        Works with any map — create custom arenas using straightforward commands that make any map plugin-ready.
+    </LinkCard>
+    <LinkCard title="Ready to Play" icon="rocket" href="/demo/demo">
+        Jump straight in on our demo server, no setup required.
+    </LinkCard>
+</CardGrid>
