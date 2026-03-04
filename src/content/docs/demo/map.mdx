@@ -71,6 +71,19 @@ The map used here is based on the [Polus – Among Us](https://www.planetminecra
         level-name=polus
         ```
 
+        :::note
+        In the latest version, you no longer need to set the level-name in server.properties to world where you want to play.
+        The plugin will automatically detect the correct world.
+
+        This works because the world folder name is now saved in the area file.
+
+        If you have previously used an older version of the plugin, this information may have been lost.
+        To fix this, set the level-name in server.properties once to the map where the area is located. The plugin will detect it and save the world name in its area configuration.
+
+        After that, you can use a completely different map as your default world.
+        The plugin will automatically load the required world when starting a game.
+        :::
+
     6. **Start your server and play!**
 
         Launch your server. The map and area configuration will be loaded automatically.

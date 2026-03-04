@@ -2,6 +2,7 @@
     "name": "test",
     "uuid": "f4facaf7-046f-40ec-9cc3-0ed13f965655",
     "worldId": "eeb36cc9-b81f-4718-8cb6-a6e3fd2b1103",
+    "worldFolder": "polus",
     "minCorner": {
         "x": -83.92934244650542,
         "y": -56.35382608433229,
