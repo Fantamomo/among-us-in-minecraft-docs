@@ -272,3 +272,27 @@ If a player disconnects, they remain part of the current game instance. This mea
 * Player selectors will continue to include them.
 
 This ensures that administrative and game-related commands work consistently, regardless of whether a player is currently online or temporarily disconnected.
+
+:::caution[Selecting]
+Selecting players via `@a`, `@p` etc. works like in vanilla Minecraft.
+However, some predicates such as `gamemode=...` are not supported.
+All predicates are supported when using `@s`.
+Other selectors only support `sort` and `limit` — additional predicates will be accepted but have no effect.
+
+This limitation exists because some players may no longer be online.
+:::
+
+:::note[Custom Selector]
+This plugin introduces a custom predicate `game=<code>` to target players within a specific game.
+It works both in the console and on the client side.
+Note that the client is unaware of this predicate, so the command will appear highlighted in red.
+
+Usage:
+```
+@a[game=CODE]
+```
+
+When used in the console, all currently running games will be suggested as autocomplete options.
+
+You can also select all player that are NOT in a game by using `@a[game=!CODE]`.
+:::
