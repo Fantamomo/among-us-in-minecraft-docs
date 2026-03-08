@@ -1,0 +1,22 @@
+---
+title: Executioner
+description: The Executioner is a Neutral role that wins by getting their assigned target ejected during a meeting.
+---
+
+import {Badge} from '@astrojs/starlight/components';
+
+<Badge text="Neutral" variant="tip"/>
+
+At the start of the game, the Executioner is assigned a random player as their target.
+
+The Executioner's only win condition is getting their target ejected during a meeting.
+
+:::tip[Who is my target?]
+The target's name is shown on the scoreboard, and their nametag appears in green above their head.
+:::
+
+:::note[Edge Cases]
+The target will never be a Jester.
+
+In the rare case where no valid target is available, the Executioner cannot win.
+:::

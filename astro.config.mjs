@@ -79,6 +79,7 @@ export default defineConfig({
                                 {label: 'Arsonist', slug: 'roles/neutral/arsonist'},
                                 {label: 'Cannibal', slug: 'roles/neutral/cannibal'},
                                 {label: 'Jester', slug: 'roles/neutral/jester'},
+                                {label: 'Executioner', slug: 'roles/neutral/executioner'},
                             ]
                         }
                     ]
