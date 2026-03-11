@@ -35,6 +35,7 @@ export default defineConfig({
                 {
                     label: 'Gameplay',
                     items: [
+                        {label: 'Lobby', slug: 'gameplay/lobby'},
                         {label: 'Meeting', slug: 'gameplay/meeting'},
                         {label: 'Sabotage', slug: 'gameplay/sabotage'},
                         {label: 'Vents', slug: 'gameplay/vents'},
