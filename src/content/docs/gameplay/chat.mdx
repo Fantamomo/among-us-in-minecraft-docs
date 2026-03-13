@@ -1,0 +1,91 @@
+---
+title: Chat
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+## Lobby Chat
+
+In the lobby before the game starts, you can chat with other players in the lobby.
+
+```
+[LOBBY] <player>: <message>
+```
+
+Players outside your game will not be able to see your chat.
+
+## In Game Chat
+
+Chat messages will be blocked once the game has started.
+
+## Ghost Chat
+
+Dead players can chat freely in all phases of the game.
+
+Chat messages will only be visible to other dead players.
+```
+[GHOST] <player>: <message>
+```
+
+:::note
+Ghost chat can be disabled in the settings:
+<Steps>
+    1. Open the settings menu (`/au settings`)
+    2. Click on the book item.
+    3. Click on the item called `Ghost Messages In-Game`.
+</Steps>
+:::
+
+## Meeting Chat
+
+During a meeting, you can chat with all other players.
+```
+[MEETING] <player>: <message>
+```
+Dead players will also be able to see your messages.
+
+
+## Imposter Chat
+
+Imposters can chat with other imposters if the settings (default) allow it.
+
+To send a message, use the `/impostermsg` or `/im` command followed by your message.
+
+```
+[IMPOSTER] <player>: <message>
+```
+
+All imposters, including dead ones, will see your message.
+
+As a dead imposter, you cannot use the `/impostermsg` command.
+
+## Restrictions
+
+Minecraft includes some commands that allow you to send messages to other players:
+
+- `/tell`
+- `/msg`
+- `/w`
+- `/me`
+
+For fair-play reasons, all of these commands are disabled by default.
+
+### tell, msg and w
+
+`msg` is the primary command, while `tell` and `w` are aliases.
+
+This command allows you to send a message to a specific player.
+
+The command is blocked if any of the following conditions are met:
+1. The sender is in a game.
+2. One of the target players is in a game.
+
+The command is allowed if the sender and the target are the same player.
+
+If the sender is an imposter and the target player is also an imposter, the sender will receive a message saying them to use the `/impostermsg` command instead.
+
+### me
+
+The `/me` command sends a message to all other players in the format `* <player> <message>`.
+
+This command is also blocked if the sender is currently in a game.
