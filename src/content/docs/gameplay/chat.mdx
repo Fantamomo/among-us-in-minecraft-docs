@@ -2,7 +2,7 @@
 title: Chat
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import {Steps} from '@astrojs/starlight/components';
 
 ## Lobby Chat
 
@@ -89,3 +89,31 @@ If the sender is an imposter and the target player is also an imposter, the send
 The `/me` command sends a message to all other players in the format `* <player> <message>`.
 
 This command is also blocked if the sender is currently in a game.
+
+## Disable Chat Restriction
+
+You can allow unrestricted messaging between players by turning off the chat restriction in the settings menu.
+
+**To disable the restriction:**
+
+<Steps>
+    1. Open the settings menu using `/au settings`
+    2. Select the book icon.
+    3. Toggle the **Disable Messages Restriction** option.
+</Steps>
+
+:::caution[Not Recommended]
+We strongly advise against disabling this setting during normal gameplay.
+:::
+
+:::danger[Role & Strategy Exposure]
+When turned off, all players, including those who are already dead, can communicate without limitations. This may expose roles, strategies, or other game-critical information that is meant to stay hidden.
+:::
+
+:::tip[Private Sessions Only]
+Only use this option in private sessions, for example when explaining the game rules or mechanics to new players.
+:::
+
+:::note[Game Start Restriction]
+Changing this setting after the game has started will have no effect.
+:::
