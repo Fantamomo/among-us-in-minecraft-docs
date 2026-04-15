@@ -1,0 +1,108 @@
+---
+title: Action Log
+description: Overview of the Action Log system, including storage, upload, and usage.
+---
+
+From the moment a game is created until it ends, (nearly) every event is recorded.
+
+This is called the `Action Log`.
+
+---
+
+## Overview
+
+The Action Log captures all relevant in-game events, including:
+
+- Player joins and leaves
+- Role assignments
+- Special role events (e.g., morphing)
+- Kills and deaths
+- Meetings and votes
+- Task progress and completion
+- Vents
+- Chat messages
+
+:::danger[Chat Messages]
+The Action Log records **all** chat messages.
+:::
+
+---
+
+## Privacy First
+
+**Action Logs are NOT reviewed, analyzed, or monitored.**
+
+- The server **does not read or inspect** any logs
+- No automated analysis is performed
+- No statistics or player behavior tracking is collected
+- Logs exist **purely for playback and debugging purposes**
+
+The system acts strictly as storage and optional sharing.
+
+The server software is fully open source:
+[https://github.com/Fantamomo/among-us-in-minecraft-logs](https://github.com/Fantamomo/among-us-in-minecraft-logs)
+
+---
+
+## Upload and Sharing
+
+If enabled (default), the Action Log is uploaded to a remote server after the game ends.
+
+After a successful upload:
+
+- All players receive a chat message
+- A clickable link to the log is provided
+
+The log viewer is available at:  
+[https://logs.among-us-in-minecraft.fantamomo.com](https://logs.among-us-in-minecraft.fantamomo.com)
+
+Log URLs follow this format:
+
+```
+https://logs.among-us-in-minecraft.fantamomo.com/log/{8-digit-code}
+```
+
+:::note[Privacy]
+Uploaded logs are automatically deleted after **24 hours**.
+
+They are **not viewed, scanned, or processed** during this time.
+:::
+
+---
+
+## Local Storage
+
+All logs are also stored locally on the minecraft server:
+
+```
+/plugins/AmongUs/logs/game/{uuid}.json
+```
+
+:::caution[Privacy]
+Local logs are **never automatically deleted**.
+
+They also remain **completely untouched and unreviewed** unless the server owner accesses them manually.
+:::
+
+:::note[Server Shutdown]
+If the server stops or crashes, the plugin attempts to save logs automatically.
+
+However, these logs are **not uploaded**.
+:::
+
+---
+
+## Manual Log Analysis
+
+You can analyze logs yourself without uploading them.
+
+Drag and drop a `.json` file onto the corresponding field at the website. The log will be:
+
+- Processed **locally in your browser**
+- Parsed and displayed instantly
+
+:::caution[Privacy]
+Logs opened this way are **never uploaded**.
+
+Everything happens **client-side**, meaning no data leaves your device.
+:::

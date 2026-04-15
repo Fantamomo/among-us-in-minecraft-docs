@@ -44,6 +44,12 @@ export default defineConfig({
                     ]
                 },
                 {
+                    label: 'Misc',
+                    items: [
+                        {label: 'Action Log', slug: 'misc/action-log'},
+                    ]
+                },
+                {
                     label: 'Roles',
                     items: [
                         {label: 'Role List', slug: 'roles/roles'},
