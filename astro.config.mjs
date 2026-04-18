@@ -4,6 +4,9 @@ import starlight from '@astrojs/starlight';
 
 export default defineConfig({
     site: 'https://among-us-in-minecraft.docs.fantamomo.com',
+    redirects: {
+        "/demo/demo": "/demo/server",
+    },
     integrations: [
         starlight({
             title: 'Among Us in Minecraft Docs',
@@ -119,7 +122,7 @@ export default defineConfig({
                 {
                     label: 'Demo',
                     items: [
-                        {label: 'Server', slug: 'demo/demo'},
+                        {label: 'Server', slug: 'demo/server'},
                         {label: 'Map', slug: 'demo/map'},
                     ]
                 }
