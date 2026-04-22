@@ -8,18 +8,43 @@ import {Steps} from '@astrojs/starlight/components';
 Want to try the plugin before setting it up yourself? A public demo server is available at `mc.fantamomo.com`.
 
 <Steps>
-    1. Open Minecraft and select the latest version (`1.21.11`).
+    1. Open Minecraft and select the version `1.21.11`.
     2. Go to **Multiplayer** and click **Add Server**.
     3. Enter `mc.fantamomo.com` as the server address and connect.
     4. Run `/au create test` to create a new game.
-    5. Invite your friends with `/au invite <player>` — they will receive a message to join your game.
-        Alternatively, share the game code displayed in the scoreboard — your friends can join with `/au join <code>`.
+    5. Invite your friends with `/au invite player>` — they will receive a message to join your game.
+        Alternatively, share the game code displayed in the scoreboard — your friends can join with `/au join code>`.
         :::note[Chat restrictions]
         See [here](/gameplay/chat) for more information about chat restrictions.
         :::
     6. Use `/au settings` to customize the game to your liking.
     7. Start the game with `/au start` and have fun!
 </Steps>
+
+:::caution[Privacy]
+**What data is collected when you join the demo server?**
+
+When you connect to the server, the following data is processed:
+
+- Minecraft username
+- Minecraft UUID
+- IP address (as with any standard Minecraft server)
+
+The IP address is stored in the server logs. This information is **not shared with any third parties** and is used solely for operating and maintaining the server.
+
+**Chat data**
+
+If you send messages in chat, they will be stored in the server logs.
+
+Additionally:
+
+- While in a game, chat messages may also be recorded by the Action Log System: [Action Log System](/misc/action-log)
+- If bots are present in the game, chat messages may be included in prompts sent to an AI system (Hackclub AI, via OpenRouter). These providers may process and potentially store the messages.
+
+All data is used strictly for gameplay functionality, logging, and bot interaction purposes, and is not used for any unrelated processing.
+:::
+
+---
 
 :::danger[Cannot connect]
 If you are unable to connect to the demo server, there are two possible reasons:
@@ -29,6 +54,13 @@ If you are unable to connect to the demo server, there are two possible reasons:
 :::
 
 :::tip[Not enough players?]
+**Play with bots**
+
+Use `/au bot add <name>` to add a bot with the given name.
+Read more about bots here: [Bots](/bots/introduction).
+
+**Without bots**
+
 Run `/au settings`, click the redstone item, and set **Win Condition Check** to `false`.
 This lets you start the game with fewer players than normally required, but the game will no longer end automatically.
 
