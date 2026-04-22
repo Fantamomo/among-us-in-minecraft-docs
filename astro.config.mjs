@@ -47,6 +47,12 @@ export default defineConfig({
                     ]
                 },
                 {
+                    label: 'Bots',
+                    items: [
+                        {label: 'Introduction', slug: 'bots/introduction'},
+                    ]
+                },
+                {
                     label: 'Misc',
                     items: [
                         {label: 'Action Log', slug: 'misc/action-log'},
