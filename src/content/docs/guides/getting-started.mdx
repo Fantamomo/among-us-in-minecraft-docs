@@ -26,7 +26,30 @@ Get the Among Us experience in your Minecraft server — follow the steps below 
             <TabItem label="Download (Recommended)">
                 1. Open the [Releases](https://github.com/Fantamomo/among-us-in-minecraft/releases/) page on GitHub.
                 2. Expand **Assets** on the latest release.
-                3. Download the file named `AmongUs-x.x-SNAPSHOT-all.jar`.
+                3. There are now 3 .jar files:
+                    <Tabs>
+                        <TabItem label="lite (Recommended)">
+                            The lite version is the recommended option for most users.
+
+                            On first startup, it will download all required dependencies automatically.
+                            This means the initial startup may take approximately **1–3 minutes**.
+
+                            An internet connection is required only for the first launch.
+                        </TabItem>
+                        <TabItem label="standalone">
+                            All dependencies are bundled directly into the plugin.
+
+                            This results in a larger file size, but no additional downloads are required at startup.
+                        </TabItem>
+                        <TabItem label="thin">
+                            :::danger[Does not work]
+                            This version **does not work**. It is only intended for special cases and should not be used in normal setups.
+
+                            The plugin will log a warning and throw an exception on startup.
+                            :::
+                        </TabItem>
+
+                    </Tabs>
             </TabItem>
             <TabItem label="Build from Source">
                 Clone the repository and build the plugin using Gradle:
@@ -75,7 +98,7 @@ Get the Among Us experience in your Minecraft server — follow the steps below 
 
         <FileTree>
         - plugins/
-          - **AmongUs-x.x-SNAPSHOT-all.jar** the downloaded .jar file
+          - **AmongUs-x.x-SNAPSHOT-x.jar** the downloaded .jar file
           - ...
         - ...
         </FileTree>
