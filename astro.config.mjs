@@ -50,7 +50,9 @@ export default defineConfig({
                     label: 'Bots',
                     items: [
                         {label: 'Introduction', slug: 'bots/introduction'},
-                    ]
+                        {label: 'Limitation', slug: 'bots/limitation'}
+                    ],
+                    badge: { text: 'Experimental', variant: 'caution' },
                 },
                 {
                     label: 'Misc',
