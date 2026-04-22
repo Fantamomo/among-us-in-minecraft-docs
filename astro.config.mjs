@@ -3,7 +3,7 @@ import {defineConfig} from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
-    site: 'https://among-us-in-minecraft.docs.fantamomo.com',
+    site: 'https://docs.among-us-in-minecraft.fantamomo.com',
     redirects: {
         "/demo/demo": "/demo/server",
     },
