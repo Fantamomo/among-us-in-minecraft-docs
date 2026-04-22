@@ -1,0 +1,66 @@
+---
+title: Introduction to Bots
+description: What are bots and how can you use them?
+---
+
+Among Us in Minecraft introduces the ability to use bots.
+
+Bots behave like real players, but are fully controlled by the server.
+
+## What can bots do?
+
+At the moment, bots have a limited set of abilities and features. They can:
+
+- Move around
+- Perform tasks
+- Kill players
+- Report bodies
+- Chat and vote in meetings
+- And more coming soon!
+
+## Configuring bots
+
+Basic bot functionality works out of the box and requires no setup.
+
+However, to enable chat and smarter voting behavior, you need to configure AI support.
+
+Currently, only OpenRouter is supported.
+
+To enable AI:
+
+- Enable it in `config.yml`
+- Add your OpenRouter API key in `secrets.properties`
+
+We recommend using `google/gemini-2.5-flash`. It is a fast and cost-efficient model — and speed matters here.
+
+## Adding bots
+
+There are currently nine available bots. The only difference between them is their name and skin.
+
+We use default Minecraft skins and names for the bots:
+
+- Alex
+- Air
+- Efi
+- Kai
+- Makena
+- Noor
+- Steve
+- Sunny
+- Zuri
+
+To add a bot to your game, run:
+
+```
+/au bot add <bot_name>
+```
+
+To remove a bot from your game, run:
+
+```
+/au bot remove <bot_name>
+```
+
+Once added, bots will join the game and send a random message in chat.
+
+If AI is enabled, you can also write messages to the bot(s), and one or more of them will respond.

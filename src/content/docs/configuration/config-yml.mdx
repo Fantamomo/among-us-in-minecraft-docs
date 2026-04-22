@@ -3,13 +3,13 @@ title: config.yml
 description: Among Us configuration file.
 ---
 
-The plugin's configuration file is located at:
+The plugin’s configuration file is located at:
 
 ```
 plugins/AmongUs/config.yml
 ```
 
-Below is the full default configuration:
+Below is the **full default configuration**:
 
 ```yaml
 msg-command-blocker:
@@ -19,9 +19,11 @@ msg-command-blocker:
     - msg
     - tell
     - w
+    - me
     - minecraft:tell
     - minecraft:msg
     - minecraft:w
+    - minecraft:me
 
 morph-blender:
   enabled: false
@@ -29,17 +31,38 @@ morph-blender:
   visibility: auto
 
 roles:
-  disabled:
-  #  - phantom
+  disabled: []
 
 modifications:
-  disabled:
-  #  - small
+  disabled: []
 
 game-creation:
   everyone-can-create: false
   max-games: 10
   ignore-admins: true
+
+action-log-upload:
+  enabled: true
+  url: https://logs.among-us-in-minecraft.fantamomo.com
+  send-to-players: true
+
+ai:
+  enabled: false
+  provider:
+    type: openrouter
+    base-url:
+    chat-completions-path:
+    model-path:
+    embeddings-path:
+  model: google/gemini-2.5-flash
+  generate-game-summary: true
+  latency-warning: true
+
+bots:
+  enabled: true
+  only-admins: false
+  admin-ignore-bots-limit: true
+  max-bots-per-game: 5
 
 animate-scoreboard: true
 ```
@@ -48,9 +71,17 @@ animate-scoreboard: true
 
 ## msg-command-blocker
 
-Private messaging can break gameplay by allowing hidden information to be shared between players. This module intercepts message commands before they execute to ensure fair play.
+Prevents players from using private messaging commands during games to ensure fair play and prevent information leakage.
 
-Commands such as `/msg`, `/tell`, and `/w` are **blocked** when the sender or at least one target is in an active game. They are **allowed** if neither player is in a game, or if the sender and target are the same person.
+Blocked commands include:
+
+* `/msg`
+* `/tell`
+* `/w`
+* `/me`
+* and their Minecraft namespaced variants
+
+Commands are blocked when a player is in an active game.
 
 ### disabled
 
@@ -58,8 +89,10 @@ Commands such as `/msg`, `/tell`, and `/w` are **blocked** when the sender or at
 disabled: false
 ```
 
-- `false` → Command blocking is active.
-- `true` → No commands are blocked.
+* `false` → Command blocking is active.
+* `true` → All commands are allowed.
+
+---
 
 ### legacy
 
@@ -67,35 +100,34 @@ disabled: false
 legacy: false
 ```
 
-- `false` → Automatically intercepts private message commands (recommended).
-- `true` → Only blocks the commands explicitly listed under `commands:`.
+* `false` → Automatically intercepts message commands (recommended).
+* `true` → Only blocks commands listed in `commands:`.
 
-:::danger
-Legacy mode can only check the sender, not the target. This means players outside a game can still message players inside one.
-:::
+---
 
-:::caution
-Enable legacy mode if another plugin overrides `/msg`, if your server uses custom private message commands, or if you see console warnings related to command interception.
-:::
+### commands (legacy mode only)
 
-### commands
-
-Only used when `legacy: true`. Lists the commands to block:
+Used only when `legacy: true`:
 
 ```yaml
 commands:
   - msg
   - tell
   - w
+  - me
+  - minecraft:tell
+  - minecraft:msg
+  - minecraft:w
+  - minecraft:me
 ```
 
-Add any additional aliases your server uses.
+You can extend this list for custom server aliases.
 
 ---
 
 ## morph-blender
 
-Enables animated skin transitions when a player changes form (e.g. the [Morphling](/roles/imposters/morphling) role). A valid **MineSkin API key** must be set in `secrets.properties`. If disabled, skin changes happen instantly without any animation.
+Enables animated skin transitions when players change form (e.g. Morphling role). Requires a valid **MineSkin API key** in `secrets.properties`.
 
 ### enabled
 
@@ -103,8 +135,8 @@ Enables animated skin transitions when a player changes form (e.g. the [Morphlin
 enabled: false
 ```
 
-- `true` → Animated morph transitions.
-- `false` → Instant skin switch.
+* `true` → Enables animated morph transitions.
+* `false` → Instant skin changes.
 
 ### blender
 
@@ -112,11 +144,11 @@ enabled: false
 blender: virus
 ```
 
-The animation style used during a morph:
+Available animation styles:
 
-- `virus` – Viral spreading animation.
-- `fade` – Smooth fade transition.
-- `checker` – Checkerboard blending.
+* `virus` – Spreading “infection-style” animation
+* `fade` – Smooth fade transition
+* `checker` – Checkerboard pattern transition
 
 ### visibility
 
@@ -124,46 +156,60 @@ The animation style used during a morph:
 visibility: auto
 ```
 
-Controls the visibility of generated skins on MineSkin:
+Controls MineSkin skin visibility:
 
-- `auto` – Automatically selects the best option based on your plan (recommended).
-- `unlisted` – Accessible via direct link only.
-- `private` – Only visible to your MineSkin account.
-- `public` – Visible to everyone (not recommended).
+* `auto` – Recommended automatic selection
+* `unlisted` – Accessible via direct link only
+* `private` – Only visible to your account
+* `public` – Visible to everyone (not recommended)
 
 ---
 
 ## roles
 
-Defines which roles are disabled and hidden from gameplay:
+Defines roles disabled in the game:
 
 ```yaml
 roles:
-  disabled:
-    - phantom
+  disabled: []
 ```
 
-Roles listed under `disabled:` cannot be selected and are completely hidden in-game.
+Any role listed here will not appear in-game.
+
+Example:
+
+```yaml
+disabled:
+  - phantom
+```
+
+:::note[Crewmate]
+The role `crewmate` is always enabled and cannot be disabled.
+:::
 
 ---
 
 ## modifications
 
-Defines which modifications are disabled and hidden from gameplay:
+Defines gameplay modifications that are disabled:
 
 ```yaml
 modifications:
-  disabled:
-    - small
+  disabled: []
 ```
 
-Modifications listed under `disabled:` cannot be selected and are completely hidden in-game.
+Example:
+
+```yaml
+disabled:
+  - small
+```
 
 ---
 
 ## game-creation
 
-Controls who can create games and how many can run simultaneously.
+Controls game creation permissions and limits.
 
 ### everyone-can-create
 
@@ -171,8 +217,10 @@ Controls who can create games and how many can run simultaneously.
 everyone-can-create: false
 ```
 
-- `true` → All players can create games.
-- `false` → Only players with the `amongus.admin.game.create` permission can create games.
+* `true` → All players can create games
+* `false` → Only players with `amongus.admin.game.create`
+
+---
 
 ### max-games
 
@@ -180,7 +228,9 @@ everyone-can-create: false
 max-games: 10
 ```
 
-The maximum number of games that can exist at the same time. Once the limit is reached, no additional games can be created.
+Maximum number of simultaneous games allowed.
+
+---
 
 ### ignore-admins
 
@@ -188,8 +238,176 @@ The maximum number of games that can exist at the same time. Once the limit is r
 ignore-admins: true
 ```
 
-- `true` → Players with `amongus.admin.game.create` can bypass the `max-games` limit.
-- `false` → The `max-games` limit applies to everyone, including admins.
+* `true` → Admins bypass game limit
+* `false` → Admins are also restricted
+
+---
+
+## action-log-upload
+
+Handles uploading game logs for analysis or replay systems.
+
+### enabled
+
+```yaml
+enabled: true
+```
+
+* Enables or disables log uploading.
+
+### url
+
+```yaml
+url: https://logs.among-us-in-minecraft.fantamomo.com
+```
+
+Endpoint used to upload action logs.
+
+:::tip[Action Logs]
+Learn more about Actions Logs: [Action Log System](/misc/action-log)
+:::
+
+### send-to-players
+
+```yaml
+send-to-players: true
+```
+
+* `true` → All players in a game receive logs
+* `false` → Only the host receives logs
+
+---
+
+## ai
+
+AI features for summaries and optional integrations via OpenRouter.
+
+### enabled
+
+```yaml
+enabled: false
+```
+
+Enables AI features such as:
+
+* Game summaries
+* Bot chat and smarter votes
+
+:::tip[Bots]
+Learn more about Bots: [What are bots](/bots/introduction)
+:::
+
+---
+
+### provider
+
+```yaml
+provider:
+  type: openrouter
+```
+
+Currently only **OpenRouter** is supported.
+
+Optional fields:
+
+* `base-url`
+* `chat-completions-path`
+* `model-path`
+* `embeddings-path`
+
+---
+
+### model
+
+```yaml
+model: google/gemini-2.5-flash
+```
+
+AI model used for generation.
+
+Multiple models can be specified:
+
+```yaml
+model: modelA;modelB;modelC
+```
+
+Fallback order is used if a model fails.
+
+---
+
+### generate-game-summary
+
+```yaml
+generate-game-summary: true
+```
+
+* Generates a post-game AI summary.
+
+:::caution
+The summary is generated, output to the console, and uploaded with the action log, but is currently not visible on the log page.
+:::
+
+---
+
+### latency-warning
+
+```yaml
+latency-warning: true
+```
+
+* Warns about AI response delays.
+
+---
+
+## bots
+
+Controls AI/player bots in games.
+
+:::tip[Bots]
+Learn more about Bots: [Bots](/bots/introduction)
+:::
+
+### enabled
+
+```yaml
+enabled: true
+```
+
+* Enables bot system.
+
+---
+
+### only-admins
+
+```yaml
+only-admins: false
+```
+
+* `true` → Only admins can create bots
+
+---
+
+### admin-ignore-bots-limit
+
+```yaml
+admin-ignore-bots-limit: true
+```
+
+* `true` → Admins bypass bot limits
+
+---
+
+### max-bots-per-game
+
+```yaml
+max-bots-per-game: 5
+```
+
+Maximum number of bots per game (max effective: 9).
+
+Set to:
+
+* `0` → Unlimited (clamped internally to 9)
 
 ---
 
@@ -199,14 +417,14 @@ ignore-admins: true
 animate-scoreboard: true
 ```
 
-- `true` → The scoreboard updates dynamically with animation.
-- `false` → Static scoreboard display.
+* `true` → Animated scoreboard updates
+* `false` → Instant updates
 
 ---
 
 ## Recommended Setup
 
-For most servers, the following configuration is a good starting point:
+A balanced production setup:
 
 ```yaml
 msg-command-blocker:
@@ -218,11 +436,13 @@ morph-blender:
   blender: virus
   visibility: auto
 
-roles:
-  disabled: []
+ai:
+  enabled: true
+  model: google/gemini-2.5-flash
 
-modifications:
-  disabled: []
+bots:
+  enabled: true
+  max-bots-per-game: 5
 
 game-creation:
   everyone-can-create: false
