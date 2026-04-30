@@ -104,6 +104,18 @@ export default defineConfig({
                     ]
                 },
                 {
+                    label: 'Modifications',
+                    items: [
+                        {label: 'Modifications', slug: 'modifications/modifications'},
+                        {label: 'Small', slug: 'modifications/small'},
+                        {label: 'Radar', slug: 'modifications/radar'},
+                        {label: 'Speed', slug: 'modifications/speed'},
+                        {label: 'Torch', slug: 'modifications/torch'},
+                        {label: 'Laggy', slug: 'modifications/laggy'},
+                    ],
+                    badge: { text: 'Experimental', variant: 'caution' },
+                },
+                {
                     label: 'Tasks',
                     collapsed: true,
                     items: [
