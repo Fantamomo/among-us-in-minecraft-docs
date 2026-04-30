@@ -1,0 +1,38 @@
+---
+title: Modifications
+description: What modifications are and how they work
+---
+
+import {Badge, CardGrid, LinkCard, Steps} from '@astrojs/starlight/components';
+
+Modifications are gameplay modifiers that change how a player behaves in the game.
+
+Some provide advantages, while others introduce disadvantages or unique mechanics.
+
+Currently, there are five modifications:
+
+<CardGrid>
+    <LinkCard title="Small" href="../small" description="Reduces the player’s size." />
+    <LinkCard title="Radar" href="../radar" description="Shows the nearest player’s direction and distance." />
+    <LinkCard title="Speed" href="../speed" description="Increases movement speed." />
+    <LinkCard title="Torch" href="../torch" description="Grants better visibility in dark areas." />
+    <LinkCard title="Laggy" href="../laggy" description="Reduces update frequency, causing delayed synchronization." />
+</CardGrid>
+
+:::caution[Experimental]
+Modifications are still experimental and may lead to unfair gameplay, or exploits.
+
+Not all maps support all modifications.
+:::
+
+:::tip[Enable modifications]
+Modifications are default disabled.
+
+To enable them:
+
+<Steps>
+    1. Open the game settings. (via `/au settings`)
+    2. Enable the **Modifications** tab. (that with the `Potion` item)
+    3. Click on the red glass pane to enable the modification.
+</Steps>
+:::
