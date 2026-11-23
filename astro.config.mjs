@@ -108,6 +108,7 @@ export default defineConfig({
                     label: 'Modifications',
                     items: [
                         {label: 'Modifications', slug: 'modifications/modifications'},
+                        {label: 'Ghost Steps', slug: 'modifications/ghost_steps'},
                         {label: 'Small', slug: 'modifications/small'},
                         {label: 'Radar', slug: 'modifications/radar'},
                         {label: 'Speed', slug: 'modifications/speed'},
