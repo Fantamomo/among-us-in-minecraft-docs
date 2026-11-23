@@ -118,6 +118,11 @@ export default defineConfig({
                     badge: { text: 'Experimental', variant: 'caution' },
                 },
                 {
+                    label: 'Advancements',
+                    slug: 'advancements/advancements',
+                    badge: { text: 'Coming Soon', variant: 'tip' },
+                },
+                {
                     label: 'Tasks',
                     collapsed: true,
                     items: [
