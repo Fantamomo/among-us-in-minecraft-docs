@@ -89,6 +89,7 @@ export default defineConfig({
                                 {label: 'Miner', slug: 'roles/imposters/miner'},
                                 {label: 'Morphling', slug: 'roles/imposters/morphling'},
                                 {label: 'Phantom', slug: 'roles/imposters/phantom'},
+                                {label: 'Witch', slug: 'roles/imposters/witch'},
                             ]
                         },
                         {
